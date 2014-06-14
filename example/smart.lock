@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "link-accounts": {
+        "path": "../../meteor-packages/link-accounts"
+      }
+    },
+    "packages": {
+      "link-accounts": {
+        "path": "../../meteor-packages/link-accounts"
+      }
+    }
+  }
+}
