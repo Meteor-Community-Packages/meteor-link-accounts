@@ -4,6 +4,5 @@
   "homepage": "https://github.com/yubozhao/meteor-link-accounts",
   "author": "Bozhao Yu <yubz86@gmail.com>",
   "version": "0.1.0",
-  "git": "https://github.com/yubozhao/meteor-link-accounts.git",
-  "packages": {}
+  "git": "https://github.com/yubozhao/meteor-link-accounts.git"
 }
