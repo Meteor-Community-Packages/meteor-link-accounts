@@ -13,6 +13,13 @@ Accounts.registerLoginHandler(function (options) {
 
   var result = OAuth.retrieveCredential(options.link.credentialToken,
                                         options.link.credentialSecret);
+  if (!result) {
+    return { type: "link",
+             error: new Meteor.Error(
+               Accounts.LoginCancelledError.numericError,
+               "No matching link attempt found") };
+  }
+
   if (result instanceof Error)
     throw result;
   else
@@ -37,10 +44,16 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 
   var user = Meteor.user();
 
+  if (!user) {
+    return new Error('User not found for LinkUserFromExternalService.');
+  }
+
   //we do not allow link another account from existing service.
-  if (user.services[serviceName] && user.services[serviceName].id !== serviceData.id) {
-    return new Meteor.Error('User can not link a service that is already actived');
-  } else if (!user.services[serviceName]){
+  if (user.services && user.services[serviceName] &&
+      user.services[serviceName].id !== serviceData.id) {
+
+    return new Meteor.Error('User can not link a service that is already actived.');
+  } else {
     var setAttrs = {};
     _.each(serviceData, function(value, key) {
       setAttrs["services." + serviceName + "." + key] = value;
@@ -51,7 +64,5 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
       type: serviceName,
       userId: user._id
     };
-  } else {
-    return new Error('User not found for LinkUserFromExternalService');
   }
 };

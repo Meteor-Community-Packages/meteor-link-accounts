@@ -2,29 +2,22 @@
 A Meteor package designed to links social network accounts without any hassles.
 
 ##Goals
-* Link additional social network accounts to our Meteor app.
-* Don't want to modify any Meteor core packages.
-* Don't want to do any additional works.
+* Link additional social network accounts.
+* Don't modify any Meteor core packages.
 * Don't force users to add additional Meteor packages that they are not going to
   use.
 
-##Useage
+##Usage
 Call Meteor.linkWith[ServiceName] in place instead of loginWith
 
+##Design:
+1. Piggyback on existing Meteor oauth login system. Use login handler.
 
-##Notes:
-1. Piggyback on existing Meteor oauth login system.
+2. We do not allow link different account from same service for now. For example, you
+   could not link with 2 different github accounts.
 
-2. Does not link password account. 
-
-3. We don't allow link without current user in Meteor app.
-
-4. We do not allow link different account from same service. For example, you
-   could not login the application with 2 different github accounts.
-
-5. Save the linked service info on user.services, instead of creating new field
-   on user object.  This allow user logins the application from either
-   services.
+3. Save the linked service info on user.services, instead of creating new field
+   on user object.  This allow user logins the application from linked services.
 
 ##License
 MIT

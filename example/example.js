@@ -7,13 +7,12 @@ if (Meteor.isClient) {
 
   Template.linkTemplate.helpers({
     services: function () {
-      var user = Meteor.user();
+      var user = Meteor.user(); 
       if (user) {
-        var services = _.keys(user.services);
-        return services;
+        return _.keys(user.services);
       } else {
         return;
       }
     }
-  });
+  })
 }

@@ -3,12 +3,12 @@
   "dependencies": {
     "basePackages": {
       "link-accounts": {
-        "path": "../../meteor-packages/link-accounts"
+        "path": ".."
       }
     },
     "packages": {
       "link-accounts": {
-        "path": "../../meteor-packages/link-accounts"
+        "path": ".."
       }
     }
   }
