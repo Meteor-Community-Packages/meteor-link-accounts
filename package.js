@@ -47,7 +47,7 @@ Package.on_use(function (api) {
 function isPackageAvailable (packageName) {
   function isAppDir (dir) {
     try {
-      return fs.statSync(path.join(filepath, '.meteor', 'packages')).isFile();
+      return fs.statSync(path.join(dir, '.meteor', 'packages')).isFile();
     } catch (e) {
       return false;
     }
