@@ -1,3 +1,5 @@
+if(!Package['accounts-facebook']) return;
+
 if (Meteor.isClient) {
   Meteor.linkWithFacebook = function (options, callback) {
     if (!Meteor.userId()) {

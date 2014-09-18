@@ -2,46 +2,29 @@ var fs = Npm.require('fs');
 var path = Npm.require('path');
 
 Package.describe({
-  summary: "Meteor external service link system",
+  "summary": "Meteor external service link system",
+  "version": "1.1.0",
+  "git": "https://github.com/yubozhao/meteor-link-accounts",
+  "name": "bozhao:link-accounts"
 });
 
 Package.on_use(function (api) {
+  api.versionsFrom('METEOR@0.9.0');
+
   api.imply('accounts-base', ['client', 'server']);
-  api.use('accounts-oauth', ['client', 'server']);
-  api.use('oauth', ['client', 'server']);
+  api.use(['accounts-oauth', 'oauth'], ['client', 'server']);
 
   api.add_files('link_accounts_client.js', 'client');
   api.add_files('link_accounts_server.js', 'server');
-
-  if (isPackageAvailable('meteor-developer')) {
-    api.use('meteor-developer', ['client', 'server']);
-    api.add_files(['meteor_developer.js'], 'client');
-  }
-  if (isPackageAvailable('github')) {
-    api.use('github', ['client', 'server']);
-    api.add_files(['github.js'], 'client');
-  }
-
-  if (isPackageAvailable('google')) {
-    api.use('google', ['client', 'server']);
-    api.add_files(['google.js'], 'client');
-  }
-  if (isPackageAvailable('meetup')) {
-    api.use('meetup', ['client', 'server']);
-    api.add_files(['meetup.js'], 'client');
-  }
-  if (isPackageAvailable('twitter')) {
-    api.use('twitter', ['client', 'server']);
-    api.add_files(['twitter.js'], 'client');
-  }
-  if (isPackageAvailable('weibo')) {
-    api.use('weibo', ['client', 'server']);
-    api.add_files(['weibo.js'], 'client');
-  }
-  if (isPackageAvailable('facebook')) {
-    api.use('facebook', ['client', 'server']);
-    api.add_files(['facebook.js'], 'client');
-  }
+  api.add_files([
+    'meteor_developer.js',
+    'facebook.js',
+    'github.js',
+    'google.js',
+    'meetup.js',
+    'twitter.js',
+    'weibo.js'
+  ], 'client');
 });
 
 function isPackageAvailable (packageName) {

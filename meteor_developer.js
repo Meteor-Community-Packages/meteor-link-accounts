@@ -1,3 +1,5 @@
+if(!Package['accounts-meteor-developer']) return;
+
 if (Meteor.isClient) {
   Meteor.linkWithMeteorDeveloperAccount = function (options, callback) {
     if (!Meteor.userId()) {

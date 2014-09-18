@@ -1,3 +1,5 @@
+if(!Package['accounts-google']) return;
+
 if (Meteor.isClient) {
   Meteor.linkWithGoogle = function (options, callback) {
     if (!Meteor.userId()) {

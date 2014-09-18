@@ -1,3 +1,5 @@
+if(!Package['accounts-weibo']) return;
+
 if (Meteor.isClient) {
   Meteor.linkWithWeibo = function (options, callback) {
     if (!Meteor.userId()) {

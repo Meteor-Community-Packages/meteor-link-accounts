@@ -1,3 +1,5 @@
+if(!Package['accounts-meetup']) return;
+
 if (Meteor.isClient) {
   Meteor.linkWithMeetup = function (options, callback) {
     if (!Meteor.userId()) {

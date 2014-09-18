@@ -1,3 +1,5 @@
+if(!Package['accounts-github']) return;
+
 if (Meteor.isClient) {
   Meteor.linkWithGithub = function (options, callback) {
     if (!Meteor.userId()) {
