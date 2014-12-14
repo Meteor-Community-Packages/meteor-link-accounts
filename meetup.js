@@ -8,12 +8,12 @@ if (Meteor.isClient) {
       throw new Meteor.Error(403, 'Please include accounts-meetup and meetup package')
     }
 
-    if (! callback && typeof options === "function") {
+    if (!callback && typeof options === "function") {
       callback = options;
       options = null;
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Meetup.requestCredential(options, credentialRequestCompleteCallback);
+    Package.meetup.Meetup.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

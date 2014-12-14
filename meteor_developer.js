@@ -8,13 +8,12 @@ if (Meteor.isClient) {
       throw new Meteor.Error(403, 'Please include accounts-meteor-developer and meteor-developer package')
     }
 
-    if (! callback && typeof options === "function") {
+    if (!callback && typeof options === "function") {
       callback = options;
       options = null;
     }
 
-    var credentialRequestCompleteCallback =
-      Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    MeteorDeveloperAccounts.requestCredential(options, credentialRequestCompleteCallback);
+    var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+    Package['meteor-developer'].MeteorDeveloperAccounts.requestCredential(options, credentialRequestCompleteCallback);
   };
 }
