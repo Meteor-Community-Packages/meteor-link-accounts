@@ -8,13 +8,12 @@ if (Meteor.isClient) {
       throw new Meteor.Error(403, 'Please include accounts-facebook and facebook package')
     }
 
-    if (! callback && typeof options === "function") {
+    if (!callback && typeof options === "function") {
       callback = options;
       options = null;
     }
 
-    var credentialRequestCompleteCallback =
-      Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Facebook.requestCredential(options, credentialRequestCompleteCallback);
+    var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+    Package.facebook.Facebook.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

@@ -8,12 +8,12 @@ if (Meteor.isClient) {
       throw new Meteor.Error(403, 'Please include accounts-twitter and twitter package')
     }
 
-    if (! callback && typeof options === "function") {
+    if (!callback && typeof options === "function") {
       callback = options;
       options = null;
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Twitter.requestCredential(options, credentialRequestCompleteCallback);
+    Package.twitter.Twitter.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

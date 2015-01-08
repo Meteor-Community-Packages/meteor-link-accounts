@@ -1,11 +1,11 @@
 
 if (Meteor.isClient) {
-  Meteor.linkWithGithub = function (options, callback) {
+  Meteor.linkWithInstagram = function (options, callback) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['accounts-github'] && !Package['github']) {
-      throw new Meteor.Error(403, 'Please include accounts-github and github package')
+    if(!Package['bozhao:accounts-instagram']) {
+      throw new Meteor.Error(403, 'Please include bozhao:accounts-vk package')
     }
 
     if (!callback && typeof options === "function") {
@@ -14,6 +14,6 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Package.github.Github.requestCredential(options, credentialRequestCompleteCallback);
+    Package['bozhao:accounts-instagram'].Instagram.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

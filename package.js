@@ -23,7 +23,11 @@ Package.on_use(function (api) {
     'google.js',
     'meetup.js',
     'twitter.js',
-    'weibo.js'
+    'weibo.js',
+    'instagram.js',
+    'ok.js',
+    'vk.js',
+    'mailru.js'
   ], 'client');
 });
 

@@ -6,14 +6,14 @@ if (Meteor.isClient) {
     }
     if(!Package['accounts-google'] && !Package['google']) {
       throw new Meteor.Error(403, 'Please include accounts-google and google package')
-    };
+    }
 
-    if (! callback && typeof options === "function") {
+    if (!callback && typeof options === "function") {
       callback = options;
       options = null;
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Google.requestCredential(options, credentialRequestCompleteCallback);
+    Package.google.Google.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

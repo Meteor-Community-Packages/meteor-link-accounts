@@ -7,12 +7,12 @@ if (Meteor.isClient) {
       throw new Meteor.Error(403, 'Please include accounts-weibo and weibo package')
     }
 
-    if (! callback && typeof options === "function") {
+    if (!callback && typeof options === "function") {
       callback = options;
       options = null;
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Weibo.requestCredential(options, credentialRequestCompleteCallback);
+    Package.weibo.Weibo.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

@@ -19,5 +19,18 @@ Call Meteor.linkWith[ServiceName] in place instead of loginWith
 3. Save the linked service info on user.services, instead of creating new field
    on user object.  This allow user logins the application from linked services.
 
+##Support Accounts Package
+* accounts-meteor-developer
+* accounts-github
+* accounts-facebook
+* accounts-google
+* accounts-twitter
+* accounts-meetup
+* accounts-weibo
+* bozhao:accounts-instagram
+* mrt:accounts-vk
+* mikepol:accounts-ok
+* mikepol:accounts-mailru
+
 ##License
 MIT
