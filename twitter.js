@@ -1,4 +1,3 @@
-
 if (Meteor.isClient) {
   Meteor.linkWithTwitter = function (options, callback) {
     if (!Meteor.userId()) {
