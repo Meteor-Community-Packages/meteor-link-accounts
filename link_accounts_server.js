@@ -66,3 +66,14 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
     };
   }
 };
+
+Meteor.methods({
+  '_accounts/unlink/service': function (service, userId) {
+    var user = Meteor.users.findOne({_id: userId});
+
+    if (user.services[service]) {
+    } else {
+      throw new Meteor.Error(500, 'no service');
+    }
+  }
+});

@@ -1,4 +1,3 @@
-
 if (Meteor.isClient) {
   Meteor.linkWithVk = function (options, callback) {
     if (!Meteor.userId()) {

@@ -17,17 +17,17 @@ Package.on_use(function (api) {
   api.add_files('link_accounts_client.js', 'client');
   api.add_files('link_accounts_server.js', 'server');
   api.add_files([
-    'meteor_developer.js',
-    'facebook.js',
-    'github.js',
-    'google.js',
-    'meetup.js',
-    'twitter.js',
-    'weibo.js',
-    'instagram.js',
-    'ok.js',
-    'vk.js',
-    'mailru.js'
+    'core-services/meteor_developer.js',
+    'core-services/facebook.js',
+    'core-services/github.js',
+    'core-services/google.js',
+    'core-services/meetup.js',
+    'core-services/twitter.js',
+    'core-services/weibo.js',
+    'community-services/instagram.js',
+    'community-services/ok.js',
+    'community-services/vk.js',
+    'community-services/mailru.js'
   ], 'client');
 });
 
