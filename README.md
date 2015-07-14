@@ -31,6 +31,7 @@ Call Meteor.linkWith[ServiceName] in place instead of loginWith
 * mrt:accounts-vk
 * mikepol:accounts-ok
 * mikepol:accounts-mailru
++ pauli:linkedin
 
 ##License
 MIT
