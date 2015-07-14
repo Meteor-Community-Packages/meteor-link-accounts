@@ -3,7 +3,7 @@ var path = Npm.require('path');
 
 Package.describe({
   "summary": "Meteor external service link system",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "git": "https://github.com/yubozhao/meteor-link-accounts",
   "name": "bozhao:link-accounts"
 });
@@ -25,6 +25,7 @@ Package.on_use(function (api) {
     'twitter.js',
     'weibo.js',
     'instagram.js',
+    'linkedin.js',
     'ok.js',
     'vk.js',
     'mailru.js'
