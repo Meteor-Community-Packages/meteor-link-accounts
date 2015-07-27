@@ -28,6 +28,7 @@ Package.on_use(function (api) {
     'community-services/ok.js',
     'community-services/vk.js',
     'community-services/mailru.js'
+    'community-services/linkedin.js'
   ], 'client');
 });
 

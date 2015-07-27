@@ -1,4 +1,3 @@
-
 if (Meteor.isClient) {
     Meteor.linkWithMailru = function (options, callback) {
         if (!Meteor.userId()) {
