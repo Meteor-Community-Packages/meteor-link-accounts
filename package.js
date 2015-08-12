@@ -3,7 +3,7 @@ var path = Npm.require('path');
 
 Package.describe({
   "summary": "Meteor external service link system",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "git": "https://github.com/yubozhao/meteor-link-accounts",
   "name": "bozhao:link-accounts"
 });
@@ -28,7 +28,8 @@ Package.on_use(function (api) {
     'community-services/ok.js',
     'community-services/vk.js',
     'community-services/mailru.js',
-    'community-services/linkedin.js'
+    'community-services/linkedin.js',
+    'community-services/twitch.js'
   ], 'client');
 });
 
