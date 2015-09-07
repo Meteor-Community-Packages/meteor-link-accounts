@@ -10,6 +10,13 @@ A Meteor package designed to links social network accounts without any hassles.
 ##Usage
 Call Meteor.linkWith[ServiceName] in place instead of loginWith
 
+
+For github, if you run into the issue.
+
+        Uncaught TypeError: Cannot read property 'redirectUrl' of undefinedGithub.requestCredential
+
+You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
+
 ##Design:
 1. Piggyback on existing Meteor oauth login system. Use login handler.
 
