@@ -67,13 +67,31 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   }
 };
 
-Meteor.methods({
-  '_accounts/unlink/service': function (service, userId) {
-    var user = Meteor.users.findOne({_id: userId});
+Accounts.unlinkService = function (userId, serviceName, cb) {
+  check(userId, Match.OneOf(string, Mongo.ObjectID));
+  if (typeof serviceName !== 'string') {
+    throw new Error('Service name must be string');
+  }
+  var user = Meteor.users.findOne({_id: userId});
 
-    if (user.services[service]) {
-    } else {
-      throw new Meteor.Error(500, 'no service');
+  if (user.services[service]) {
+    var newServices = _.omit(user.services, service);
+    Meteor.users.update({_id: user._id}, {$set: {services: newServices}}, function (result) {
+      if (cb && typeof cb === 'function') {
+        cb(result);
+      }
+    });
+  } else {
+    throw new Error(500, 'no service');
+  }
+};
+
+Meteor.methods({
+  '_accounts/unlink/service': function (userId, service) {
+    try {
+      Accounts.unlinkService(userId, service);
+    } catch (e) {
+      throw new Meteor.Error(e);
     }
   }
 });
