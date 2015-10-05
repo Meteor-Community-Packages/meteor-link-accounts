@@ -30,7 +30,8 @@ Package.on_use(function (api) {
     'community-services/vk.js',
     'community-services/mailru.js',
     'community-services/linkedin.js',
-    'community-services/twitch.js'
+    'community-services/twitch.js',
+    'community-services/soundcloud.js'
   ], 'client');
 });
 
