@@ -30,6 +30,7 @@ You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
 * accounts-meteor-developer
 * accounts-github
 * accounts-facebook
+* particle4dev:cordova-fb
 * accounts-google
 * accounts-twitter
 * accounts-meetup
@@ -38,6 +39,9 @@ You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
 * mrt:accounts-vk
 * mikepol:accounts-ok
 * mikepol:accounts-mailru
+* jonperl:accounts-linkedin
+* garbolino:accounts-soundcloud
+* jameslefrere:accounts-twitch
 
 ##License
 MIT

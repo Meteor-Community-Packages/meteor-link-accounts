@@ -4,8 +4,8 @@ if (Meteor.isClient) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['accounts-facebook'] || !Package['facebook']) {
-      throw new Meteor.Error(403, 'Please include accounts-facebook and facebook package')
+    if(!Package['accounts-facebook'] || !Package['facebook'] || !Package['particle4dev:cordova-fb']) {
+      throw new Meteor.Error(403, 'Please include accounts-facebook and facebook package or cordova-fb package')
     }
 
     if (!callback && typeof options === "function") {
