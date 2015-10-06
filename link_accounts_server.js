@@ -68,7 +68,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 };
 
 Accounts.unlinkService = function (userId, serviceName, cb) {
-  check(userId, Match.OneOf(string, Mongo.ObjectID));
+  check(userId, Match.OneOf(String, Mongo.ObjectID));
   if (typeof serviceName !== 'string') {
     throw new Error('Service name must be string');
   }

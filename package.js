@@ -3,7 +3,7 @@ var path = Npm.require('path');
 
 Package.describe({
   "summary": "Meteor external service link system",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "git": "https://github.com/yubozhao/meteor-link-accounts",
   "name": "bozhao:link-accounts"
 });
