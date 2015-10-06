@@ -26,6 +26,23 @@ You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
 3. Save the linked service info on user.services, instead of creating new field
    on user object.  This allow user logins the application from linked services.
 
+##Support social accounts
+* facebook
+* github
+* meteor developer accounts
+* google
+* twitter
+* meetup
+* weibo
+* instagram
+* linkedin
+* angel list
+* soundcloud
+* twitch
+* ok
+* vk
+* mailru
+
 ##Support Accounts Package
 * accounts-meteor-developer
 * accounts-github
@@ -42,6 +59,6 @@ You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
 * jonperl:accounts-linkedin
 * garbolino:accounts-soundcloud
 * jameslefrere:accounts-twitch
-
+* nicolaiwadstrom:meteor-angellist
 ##License
 MIT
