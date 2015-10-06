@@ -47,12 +47,19 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   if (!user) {
     return new Error('User not found for LinkUserFromExternalService.');
   }
+  var checkExistingSelector = {};
+  checkExistingSelector['services.' + serviceName + '.id'] = serviceData.id;
+  var existingUser = Meteor.users.findOne(checkExistingSelector);
+  if (existingUser && existingUser._id) {
+    throw new Error('This social account is already in used by other user');
+  }
 
   //we do not allow link another account from existing service.
+  //XXX maybe we can override this?
   if (user.services && user.services[serviceName] &&
       user.services[serviceName].id !== serviceData.id) {
 
-    return new Meteor.Error('User can not link a service that is already actived.');
+    return new Error('User can not link a service that is already actived.');
   } else {
     var setAttrs = {};
     _.each(serviceData, function(value, key) {
@@ -73,6 +80,9 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
     throw new Error('Service name must be string');
   }
   var user = Meteor.users.findOne({_id: userId});
+  if (serviceName === 'resume' || serviceName === 'password') {
+    throw new Error('Interal user system can not be unlink');
+  }
 
   if (user.services[serviceName]) {
     var newServices = _.omit(user.services, serviceName);
