@@ -1,10 +1,10 @@
 if (Meteor.isClient) {
-  Meteor.linkWithAngelList = function (options, callback) {
+  Meteor.linkWithSlack = function (options, callback) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if (!Package['nicolaiwadstrom:meteor-angellist'] || !Package['nicolaiwadstrom:meteor-accounts-angellist'] ) {
-      throw new Meteor.Error(403, 'Please include nicolaiwadstrom:meteor-angellist package')
+    if (!Package['acemtp:accounts-slack']) {
+      throw new Meteor.Error(403, 'Please include acemtp:accounts-slack package')
     }
 
     if (! callback && typeof options === "function") {
@@ -13,6 +13,6 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    AngelList.requestCredential(options, credentialRequestCompleteCallback);
+    Slack.requestCredential(options, credentialRequestCompleteCallback);
   };
 }
