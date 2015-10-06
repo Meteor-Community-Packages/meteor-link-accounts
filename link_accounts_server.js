@@ -74,8 +74,8 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
   }
   var user = Meteor.users.findOne({_id: userId});
 
-  if (user.services[service]) {
-    var newServices = _.omit(user.services, service);
+  if (user.services[serviceName]) {
+    var newServices = _.omit(user.services, serviceName);
     Meteor.users.update({_id: user._id}, {$set: {services: newServices}}, function (result) {
       if (cb && typeof cb === 'function') {
         cb(result);
