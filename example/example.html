@@ -4,7 +4,7 @@
 
 <body>
   <div>
-    <h2>1.  Log in with a non Github service through login button</h2>
+    <h2>1.  Log in with any non Github service through login button</h2>
     {{> loginButtons}}
   </div>
 
@@ -21,8 +21,13 @@
   <h2>3.  List out services that are associated with current user.</h2>
 
   <ul>
-  {{#each services}}
-    <li>{{this}}</li> 
-  {{/each}}
+    {{#each services}}
+      <li>{{this}}</li> 
+    {{/each}}
   </ul>
+
+  {{#if services}}
+  <h2>4.  You can also unlink services from a user account.</h2>
+    <button class="unlink-github">Unlink github account from current user</button>
+  {{/if}}
 </template>
