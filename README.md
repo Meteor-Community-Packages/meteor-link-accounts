@@ -8,16 +8,11 @@ A Meteor package designed to links social network accounts without any hassles.
   use.
 
 ##Usage
-Call Meteor.linkWith[ServiceName] in place instead of loginWith
+* Call Meteor.linkWith[ServiceName] in place instead of loginWith.  (client side)
+* For unlink, Use Accounts.unlinkeService(userId, serviceName).  (server side)
 
 
-For github, if you run into the issue.
-
-        Uncaught TypeError: Cannot read property 'redirectUrl' of undefinedGithub.requestCredential
-
-You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
-
-##Design:
+##Design notes:
 1. Piggyback on existing Meteor oauth login system. Use login handler.
 
 2. We do not allow link different account from same service for now. For example, you
@@ -25,6 +20,8 @@ You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
 
 3. Save the linked service info on user.services, instead of creating new field
    on user object.  This allow user logins the application from linked services.
+
+4. Don't create a temporary user account and then merge it.
 
 ##Support Accounts Package
 * accounts-meteor-developer
@@ -45,5 +42,6 @@ You can use  Meteor.linkWithGithub({"redirectUrl": "redirect URL"});
 * nicolaiwadstrom:meteor-angellist
 * acemtp:meteor-slack
 * xinranxiao:meteor-spotify
+
 ##License
 MIT
