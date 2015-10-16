@@ -27,7 +27,7 @@ A Meteor package designed to links social network accounts without any hassles.
 * accounts-meteor-developer
 * accounts-github
 * accounts-facebook
-* particle4dev:cordova-fb
+* btafel:accounts-facebook-cordova
 * accounts-google
 * accounts-twitter
 * accounts-meetup
