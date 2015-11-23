@@ -95,13 +95,3 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
     throw new Error(500, 'no service');
   }
 };
-
-Meteor.methods({
-  '_accounts/unlink/service': function (userId, service) {
-    try {
-      Accounts.unlinkService(userId, service);
-    } catch (e) {
-      throw new Meteor.Error(e);
-    }
-  }
-});

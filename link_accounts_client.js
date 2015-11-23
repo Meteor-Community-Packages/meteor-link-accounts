@@ -26,8 +26,3 @@ Accounts.oauth.linkCredentialRequestCompleteHandler = function(callback) {
     }
   };
 };
-
-Accounts._unlinkService = function (serviceName, userId, callback) {
-  var user = Meteor.users.findOne({_id: userId});
-  Meteor.call('_accounts/unlink/service', serviceName, userId, callback);
-};
