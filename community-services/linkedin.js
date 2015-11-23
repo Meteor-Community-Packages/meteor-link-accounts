@@ -3,8 +3,8 @@ if (Meteor.isClient) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['jonperl:accounts-linkedin']) {
-      throw new Meteor.Error(403, 'Please include jonperl:accounts-linkedin package')
+    if(!Package['jonperl:linkedin']) {
+      throw new Meteor.Error(403, 'Please include jonperl:linkedin package')
     }
 
     if (! callback && typeof options === "function") {
