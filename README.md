@@ -42,6 +42,7 @@ A Meteor package designed to links social network accounts without any hassles.
 * nicolaiwadstrom:meteor-angellist
 * acemtp:meteor-slack
 * xinranxiao:meteor-spotify
+* gcampax:accounts-dropbox
 
 ##License
 MIT

@@ -3,7 +3,7 @@ var path = Npm.require('path');
 
 Package.describe({
   "summary": "Meteor external service link system",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "git": "https://github.com/yubozhao/meteor-link-accounts",
   "name": "bozhao:link-accounts",
   "description": "Link social accounts for Meteor"
@@ -35,7 +35,8 @@ Package.on_use(function (api) {
     'community-services/soundcloud.js',
     'community-services/slack.js',
     'community-services/angellist.js',
-    'community-services/spotify.js'
+    'community-services/spotify.js',
+    'community-services/dropbox.js'
   ], 'client');
 });
 
