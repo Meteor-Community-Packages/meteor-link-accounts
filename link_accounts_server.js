@@ -32,26 +32,26 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 
   //We probably throw an error instead of call update or create here.
   if (!Meteor.userId())
-    return new Error("Can't use LinkUserFromExternalService without current user");
+    return new Meteor.Error("Can't use LinkUserFromExternalService without current user");
 
   if (serviceName === "password" || serviceName === "resume")
-    throw new Error(
+    throw new Meteor.Error(
       "Can't use LinkUserFromExternalService with internal service "
         + serviceName);
   if (!_.has(serviceData, 'id'))
-    throw new Error(
+    throw new Meteor.Error(
       "Service data for service " + serviceName + " must include id");
 
   var user = Meteor.user();
 
   if (!user) {
-    return new Error('User not found for LinkUserFromExternalService.');
+    return new Meteor.Error('User not found for LinkUserFromExternalService.');
   }
   var checkExistingSelector = {};
   checkExistingSelector['services.' + serviceName + '.id'] = serviceData.id;
   var existingUser = Meteor.users.findOne(checkExistingSelector);
   if (existingUser && existingUser._id) {
-    throw new Error('This social account is already in used by other user');
+    throw new Meteor.Error('This social account is already in used by other user');
   }
 
   //we do not allow link another account from existing service.
@@ -59,7 +59,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   if (user.services && user.services[serviceName] &&
       user.services[serviceName].id !== serviceData.id) {
 
-    return new Error('User can not link a service that is already actived.');
+    return new Meteor.Error('User can not link a service that is already actived.');
   } else {
     var setAttrs = {};
     _.each(serviceData, function(value, key) {
@@ -77,11 +77,11 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 Accounts.unlinkService = function (userId, serviceName, cb) {
   check(userId, Match.OneOf(String, Mongo.ObjectID));
   if (typeof serviceName !== 'string') {
-    throw new Error('Service name must be string');
+    throw new Meteor.Error('Service name must be string');
   }
   var user = Meteor.users.findOne({_id: userId});
   if (serviceName === 'resume' || serviceName === 'password') {
-    throw new Error('Interal user system can not be unlink');
+    throw new Meteor.Error('Interal user system can not be unlink');
   }
 
   if (user.services[serviceName]) {
@@ -92,6 +92,6 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
       }
     });
   } else {
-    throw new Error(500, 'no service');
+    throw new Meteor.Error(500, 'no service');
   }
 };
