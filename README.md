@@ -39,6 +39,7 @@ A Meteor package designed to links social network accounts without any hassles.
 * jonperl:accounts-linkedin
 * garbolino:accounts-soundcloud
 * jameslefrere:accounts-twitch
+* pcooney10:accounts-venmo
 * nicolaiwadstrom:meteor-angellist
 * acemtp:meteor-slack
 * xinranxiao:meteor-spotify
