@@ -43,6 +43,7 @@ A Meteor package designed to links social network accounts without any hassles.
 * acemtp:meteor-slack
 * xinranxiao:meteor-spotify
 * gcampax:accounts-dropbox
+* pcooney10:accounts-venmo
 
 ##License
 MIT
