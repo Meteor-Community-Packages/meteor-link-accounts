@@ -44,6 +44,9 @@ A Meteor package designed to links social network accounts without any hassles.
 * xinranxiao:meteor-spotify
 * gcampax:accounts-dropbox
 * pcooney10:accounts-venmo
+* pcooney10:accounts-venmo
+* leonzhang1109:accounts-wechat
+* leonzhang1109:accounts-qq
 
 ##License
 MIT

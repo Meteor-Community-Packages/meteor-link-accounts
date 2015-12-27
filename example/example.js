@@ -39,4 +39,9 @@ if (Meteor.isServer) {
     }
   });
   */
+  Meteor.methods({
+  '_accounts/unlink/service': function (userId, serviceName) {
+    Accounts.unlinkService(userId, serviceName);
+  }
+  });
 }
