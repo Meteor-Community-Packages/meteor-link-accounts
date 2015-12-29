@@ -11,7 +11,6 @@ A Meteor package designed to links social network accounts without any hassles.
 * Call Meteor.linkWith[ServiceName] in place instead of loginWith.  (client side)
 * For unlink, Use Accounts.unlinkeService(userId, serviceName).  (server side)
 
-
 ##Design notes:
 1. Piggyback on existing Meteor oauth login system. Use login handler.
 
@@ -24,29 +23,14 @@ A Meteor package designed to links social network accounts without any hassles.
 4. Don't create a temporary user account and then merge it.
 
 ##Support Accounts Package
-* accounts-meteor-developer
-* accounts-github
-* accounts-facebook
-* btafel:accounts-facebook-cordova
-* accounts-google
-* accounts-twitter
-* accounts-meetup
-* accounts-weibo
-* bozhao:accounts-instagram
-* mrt:accounts-vk
-* mikepol:accounts-ok
-* mikepol:accounts-mailru
-* jonperl:accounts-linkedin
-* garbolino:accounts-soundcloud
-* jameslefrere:accounts-twitch
-* nicolaiwadstrom:meteor-angellist
-* acemtp:meteor-slack
-* xinranxiao:meteor-spotify
-* gcampax:accounts-dropbox
-* pcooney10:accounts-venmo
-* pcooney10:accounts-venmo
-* leonzhang1109:accounts-wechat
-* leonzhang1109:accounts-qq
+accounts-meteor-developer, accounts-github accounts-facebook,
+btafel:accounts-facebook-cordova, accounts-google, accounts-twitter,
+accounts-meetup, accounts-weibo, bozhao:accounts-instagram,
+mrt:accounts-vk, mikepol:accounts-ok, mikepol:accounts-mailru,
+jonperl:accounts-linkedin, garbolino:accounts-soundcloud, jameslefrere:accounts-twitch, 
+nicolaiwadstrom:meteor-angellist, acemtp:meteor-slack, xinranxiao:meteor-spotify,
+gcampax:accounts-dropbox, pcooney10:accounts-venmo, leonzhang1109:accounts-wechat,
+leonzhang1109:accounts-qq,
 
 ##License
 MIT
