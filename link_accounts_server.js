@@ -51,7 +51,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   checkExistingSelector['services.' + serviceName + '.id'] = serviceData.id;
   var existingUser = Meteor.users.findOne(checkExistingSelector);
   if (existingUser && existingUser._id) {
-    throw new Meteor.Error('This social account is already in used by other user');
+    throw new Meteor.Error('This social account is already in use by other user');
   }
 
   //we do not allow link another account from existing service.
