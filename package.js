@@ -3,7 +3,7 @@ var path = Npm.require('path');
 
 Package.describe({
   "summary": "Meteor external service link system",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "git": "https://github.com/yubozhao/meteor-link-accounts",
   "name": "bozhao:link-accounts",
   "description": "Link social accounts for Meteor"
@@ -26,18 +26,21 @@ Package.on_use(function (api) {
     'core-services/meetup.js',
     'core-services/twitter.js',
     'core-services/weibo.js',
-    'community-services/instagram.js',
-    'community-services/ok.js',
-    'community-services/vk.js',
-    'community-services/mailru.js',
-    'community-services/linkedin.js',
-    'community-services/twitch.js',
-    'community-services/soundcloud.js',
-    'community-services/slack.js',
     'community-services/angellist.js',
+    'community-services/dropbox.js',
+    'community-services/edmodo.js',
+    'community-services/instagram.js',
+    'community-services/linkedin.js',
+    'community-services/mailru.js',
+    'community-services/qq.js'
+    'community-services/ok.js',
+    'community-services/slack.js',
     'community-services/spotify.js',
+    'community-services/soundcloud.js',
+    'community-services/twitch.js',
     'community-services/venmo.js',
-    'community-services/dropbox.js'
+    'community-services/vk.js',
+    'community-services/wechat.js'
   ], 'client');
 });
 
