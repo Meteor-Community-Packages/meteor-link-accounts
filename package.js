@@ -32,7 +32,7 @@ Package.on_use(function (api) {
     'community-services/instagram.js',
     'community-services/linkedin.js',
     'community-services/mailru.js',
-    'community-services/qq.js'
+    'community-services/qq.js',
     'community-services/ok.js',
     'community-services/slack.js',
     'community-services/spotify.js',
