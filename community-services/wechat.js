@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-  Meteor.linkWithInstagram = function (options, callback) {
+  Meteor.linkWithWechat = function (options, callback) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
