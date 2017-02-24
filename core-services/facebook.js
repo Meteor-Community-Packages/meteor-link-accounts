@@ -7,9 +7,9 @@ if (Meteor.isClient) {
     
     var facebookPackage;
     if (Package.facebook) {
-      facebookPackge = Package.facebook;
+      facebookPackage = Package.facebook;
     } else if (Package['facebook-oauth']) {
-      facebookPackge = Package['facebook-oauth'];
+      facebookPackage = Package['facebook-oauth'];
     }
     
     if (Meteor.isCordova) {
@@ -17,7 +17,7 @@ if (Meteor.isClient) {
         throw new Meteor.Error(403, 'Please include btafel:accounts-facebook-cordova package or cordova-fb package')
       }
     } else {
-      if (!Package['accounts-facebook'] || !facebookPackge) {
+      if (!Package['accounts-facebook'] || !facebookPackage) {
         throw new Meteor.Error(403, 'Please include accounts-facebook and facebook-oauth package or cordova-fb package')
       }
     }
