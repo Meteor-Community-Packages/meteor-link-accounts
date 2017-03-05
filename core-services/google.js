@@ -14,6 +14,6 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Package.google.Google.requestCredential(options, credentialRequestCompleteCallback);
+    Package['google-oauth'].Google.requestCredential(options, credentialRequestCompleteCallback);
   };
 }
