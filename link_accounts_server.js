@@ -88,13 +88,8 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
   }
 
   if (user.services[serviceName]) {
-    var newServices = _.omit(user.services, serviceName);
-    Meteor.users.update({_id: user._id}, {$set: {services: newServices}}, function (result) {
-      if (cb && typeof cb === 'function') {
-        cb(result);
-      }
-    });
+    return Meteor.users.update({_id: user._id}, {$unset: {[`services.${serviceName}`]: ''}}, cb)
   } else {
-    throw new Meteor.Error(500, 'no service');
+    throw new Meteor.Error('no-service', 'user is not linked with this service');
   }
 };
