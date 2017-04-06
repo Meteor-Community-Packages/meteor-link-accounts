@@ -3,7 +3,15 @@ if (Meteor.isClient) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['accounts-twitter'] && !Package['twitter']) {
+
+    var twitterPackage;
+    if (Package.twitter) {
+      twitterPackage = Package.twitter;
+    } else if (Package['twitter-oauth']) {
+      twitterPackage = Package['twitter-oauth'];
+    }
+
+    if (!Package['accounts-twitter'] && !twitterPackage) {
       throw new Meteor.Error(403, 'Please include accounts-twitter and twitter package')
     }
 
@@ -13,6 +21,6 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Package.twitter.Twitter.requestCredential(options, credentialRequestCompleteCallback);
+    twitterPackage.Twitter.requestCredential(options, credentialRequestCompleteCallback);
   };
 }
