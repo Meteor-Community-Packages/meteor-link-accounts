@@ -14,11 +14,11 @@ if (Meteor.isClient) {
     //if (Meteor.isCordova) {
     // Meteor.isCordova is broken on Ionic 2 + meteor-client-bundle
     if (typeof facebookConnectPlugin != "undefined") {
-      if (!Package['darkbasic:accounts-facebook-cordova']) {
-        throw new Meteor.Error(403, 'Please include darkbasic:accounts-facebook-cordova package or cordova-fb package')
+      if (!Package['btafel:accounts-facebook-cordova']) {
+        throw new Meteor.Error(403, 'Please include btafel:accounts-facebook-cordova package or cordova-fb package')
       }
     } else {
-      if ((!Package['accounts-facebook'] && !Package['darkbasic:accounts-facebook-cordova']) || !facebookPackage) {
+      if ((!Package['accounts-facebook'] && !Package['btafel:accounts-facebook-cordova']) || !facebookPackage) {
         throw new Meteor.Error(403, 'Please include accounts-facebook and facebook-oauth package or cordova-fb package')
       }
     }
