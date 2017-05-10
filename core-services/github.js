@@ -4,7 +4,7 @@ if (Meteor.isClient) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['accounts-github'] && !Package['github']) {
+    if(!Package['accounts-github'] || !Package['github-oauth']) {
       throw new Meteor.Error(403, 'Please include accounts-github and github package')
     }
 
@@ -14,6 +14,6 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Package.github.Github.requestCredential(options, credentialRequestCompleteCallback);
+    Package['github-oauth'].Github.requestCredential(options, credentialRequestCompleteCallback);
   };
 }
