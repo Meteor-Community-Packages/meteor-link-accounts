@@ -17,7 +17,7 @@ if (Meteor.isClient) {
 
     if (!callback && typeof options === "function") {
       callback = options;
-      options = null;
+      options = {};
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
