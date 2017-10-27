@@ -3,7 +3,7 @@ var path = Npm.require('path');
 
 Package.describe({
   "summary": "Meteor external service link system",
-  "version": "1.2.10_1",
+  "version": "1.2.10_3",
   "git": "https://github.com/yubozhao/meteor-link-accounts",
   "name": "bozhao:link-accounts",
   "description": "Link social accounts for Meteor"
@@ -28,6 +28,7 @@ Package.on_use(function (api) {
     'core-services/weibo.js',
     'community-services/angellist.js',
     'community-services/dropbox.js',
+    'community-services/discord.js',
     'community-services/edmodo.js',
     'community-services/instagram.js',
     'community-services/linkedin.js',
