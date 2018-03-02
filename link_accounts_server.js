@@ -27,6 +27,12 @@ Accounts.registerLoginHandler(function (options) {
       result.serviceName, result.serviceData, result.options);
 });
 
+Meteor.methods({
+  'cordovaGoogle'(serviceName,serviceData){
+    Accounts.LinkUserFromExternalService(serviceName, serviceData, {});//passing empty object cause in any case it is not used
+  }
+});
+
 Accounts.LinkUserFromExternalService = function (serviceName, serviceData, options) {
   options = _.clone(options || {});
 
@@ -38,7 +44,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
     throw new Meteor.Error(
       "Can't use LinkUserFromExternalService with internal service: "
         + serviceName);
-  if (!_.has(serviceData, 'id'))
+  if (!( _.has(serviceData, 'id') || _.has(serviceData, 'userId')))
     throw new Meteor.Error(
       "'id' missing from service data for: " + serviceName);
 
@@ -48,7 +54,12 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
     return new Meteor.Error('User not found for LinkUserFromExternalService');
   }
   var checkExistingSelector = {};
+  if(!!serviceData.userId){
+    serviceData.id = serviceData.userId;
+    delete serviceData.userId;
+  }
   checkExistingSelector['services.' + serviceName + '.id'] = serviceData.id;
+  
   var existingUsers = Meteor.users.find(checkExistingSelector).fetch();
   if (existingUsers.length) {
     existingUsers.forEach(function(existingUser) {
