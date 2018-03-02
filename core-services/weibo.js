@@ -3,7 +3,15 @@ if (Meteor.isClient) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['accounts-weibo'] && !Package['weibo']) {
+
+    var weiboPackage;
+    if (Package.weibo) {
+      weiboPackage = Package.weibo;
+    } else if (Package['weibo-oauth']) {
+      weiboPackage = Package['weibo-oauth'];
+    }
+
+    if (!Package['accounts-weibo'] || !weiboPackage) {
       throw new Meteor.Error(403, 'Please include accounts-weibo and weibo package')
     }
 
@@ -13,6 +21,6 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Package.weibo.Weibo.requestCredential(options, credentialRequestCompleteCallback);
+    weiboPackage.Weibo.requestCredential(options, credentialRequestCompleteCallback);
   };
 }
