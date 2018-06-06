@@ -28,7 +28,7 @@ Accounts.registerLoginHandler(function (options) {
 });
 
 Meteor.methods({
-  'cordovaGoogle'(serviceName,serviceData){
+  'cordovaGoogle': function (serviceName, serviceData) {
     Accounts.LinkUserFromExternalService(serviceName, serviceData, {});//passing empty object cause in any case it is not used
   }
 });

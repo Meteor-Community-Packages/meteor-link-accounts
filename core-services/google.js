@@ -16,7 +16,12 @@ if (Meteor.isClient) {
     if(Meteor.isCordova){
       window.plugins.googleplus.login(
         {},
-        (serviceData) => Meteor.call('cordovaGoogle', 'google', serviceData,(err) => callback(err))
+        function (serviceData) {
+          Meteor.call('cordovaGoogle', 'google', serviceData);
+        },
+        function (err) {
+          callback(err);
+        }
       );
     }else{
       Package['google-oauth'].Google.requestCredential(options, credentialRequestCompleteCallback);
