@@ -28,14 +28,33 @@ A Meteor package designed to links social network accounts without any hassles.
 4. Don't create a temporary user account and then merge it.
 
 ## Support Accounts Package
-accounts-meteor-developer, accounts-github accounts-facebook,
-btafel:accounts-facebook-cordova, accounts-google, accounts-twitter,
-accounts-meetup, accounts-weibo, bozhao:accounts-instagram,
-mrt:accounts-vk, mikepol:accounts-ok, mikepol:accounts-mailru,
-jonperl:accounts-linkedin, garbolino:accounts-soundcloud, alexbeauchemin:accounts-twitch, 
-nicolaiwadstrom:meteor-angellist, acemtp:meteor-slack, xinranxiao:meteor-spotify,
-gcampax:accounts-dropbox, pcooney10:accounts-venmo, leonzhang1109:accounts-wechat,
-leonzhang1109:accounts-qq,
+
+### Official packages
+* accounts-meteor-developer
+* accounts-github
+* accounts-facebook
+* accounts-google
+* accounts-twitter
+* accounts-meetup
+* accounts-weibo
+
+### Community packages
+* btafel:accounts-facebook-cordova
+* bozhao:accounts-instagram
+* mrt:accounts-vk
+* mikepol:accounts-ok
+* mikepol:accounts-mailru
+* jonperl:accounts-linkedin
+* garbolino:accounts-soundcloud
+* alexbeauchemin:accounts-twitch
+* nicolaiwadstrom:meteor-angellist
+* acemtp:meteor-slack
+* xinranxiao:meteor-spotify
+* gcampax:accounts-dropbox
+* pcooney10:accounts-venmo
+* leonzhang1109:accounts-wechat
+* leonzhang1109:accounts-qq
+* storyteller:accounts-line
 
 ## License
 MIT
