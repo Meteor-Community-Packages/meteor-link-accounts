@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 
 if (Meteor.isClient) {
   Meteor.linkWithMeetup = function (options, callback) {
@@ -13,7 +14,7 @@ if (Meteor.isClient) {
       options = null;
     }
 
-    var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+    const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
     Package.meetup.Meetup.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

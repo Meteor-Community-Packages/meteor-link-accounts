@@ -1,29 +1,31 @@
+import { Meteor } from 'meteor/meteor';
+
 if (Meteor.isClient) {
-  Meteor.linkWithGoogle = function (options, callback) {
+  Meteor.linkWithGoogle = function(options, callback) {
     if (!Meteor.userId()) {
       throw new Meteor.Error(402, 'Please login to an existing account before link.');
     }
-    if(!Package['accounts-google'] && !Package['google']) {
+    if (!Package['accounts-google'] && !Package['google']) {
       throw new Meteor.Error(403, 'Please include accounts-google and google package');
     }
 
-    if (!callback && typeof options === "function") {
+    if (!callback && typeof options === 'function') {
       callback = options;
       options = null;
     }
 
-    var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    if(Meteor.isCordova){
+    const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+    if (Meteor.isCordova) {
       window.plugins.googleplus.login(
         {},
-        function (serviceData) {
+        function(serviceData) {
           Meteor.call('cordovaGoogle', 'google', serviceData);
         },
-        function (err) {
+        function(err) {
           callback(err);
         }
       );
-    }else{
+    } else {
       Package['google-oauth'].Google.requestCredential(options, credentialRequestCompleteCallback);
     }
   };

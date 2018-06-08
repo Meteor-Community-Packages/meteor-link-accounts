@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 if (Meteor.isClient) {
   Meteor.linkWithLine = function(options, callback) {
     if (!Meteor.userId()) {
@@ -12,7 +14,7 @@ if (Meteor.isClient) {
       options = null;
     }
 
-    var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Line.requestCredential(options, credentialRequestCompleteCallback);
+    const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+    Package['storyteller:accounts-line'].Line.requestCredential(options, credentialRequestCompleteCallback);
   };
 }

@@ -4,7 +4,7 @@ A Meteor package designed to links social network accounts without any hassles.
 ## Next Steps
 * Look into work with Apollo (graphQL)
 * Look into merge into meteor/accounts.
-* Update to be more open and catch up to current state of Javascript
+* Update to be more open
 
 ## Goals
 * Link additional social network accounts.
