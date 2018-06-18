@@ -68,8 +68,8 @@ Accounts.LinkUserFromExternalService = function(serviceName, serviceData, option
     return new Meteor.Error('User can link only one account to service: ' + serviceName);
   } else {
     const setAttrs = {};
-    serviceData.forEach((value, key) => {
-      setAttrs['services.' + serviceName + '.' + key] = value;
+    Object.keys(serviceData).forEach(key => {
+      setAttrs['services.' + serviceName + '.' + key] = serviceData[key];
     });
 
     Meteor.users.update(user._id, { $set: setAttrs });
