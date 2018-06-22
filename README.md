@@ -16,6 +16,10 @@ A Meteor package designed to links social network accounts without any hassles.
 * Call Meteor.linkWith[ServiceName] in place instead of loginWith.  (client side)
 * For unlink, Use Accounts.unlinkService(userId, serviceName).  (server side)
 
+## Changelog
+* 2.0 Will only work for Meteor app version above 1.3.
+* 1.3 will work with Meteor app version 1.3 or below.
+
 ## Design notes:
 1. Piggyback on existing Meteor oauth login system. Use login handler.
 
