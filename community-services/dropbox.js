@@ -1,18 +1,19 @@
-if (Meteor.isClient) {
-  Meteor.linkWithDropbox = function (options, callback) {
-    if (!Meteor.userId()) {
-      throw new Meteor.Error(402, 'Please login to an existing account before link.');
-    }
-    if (!Package['gcampax:dropbox-oauth']) {
-      throw new Meteor.Error(403, 'Please include gcampax:dropbox-oauth package')
-    }
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
-    if (! callback && typeof options === "function") {
-      callback = options;
-      options = null;
-    }
+Meteor.linkWithDropbox = function(options, callback) {
+  if (!Meteor.userId()) {
+    throw new Meteor.Error(402, 'Please login to an existing account before link.');
+  }
+  if (!Package['gcampax:dropbox-oauth']) {
+    throw new Meteor.Error(403, 'Please include gcampax:dropbox-oauth package');
+  }
 
-	var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    DropboxOAuth.requestCredential(options, credentialRequestCompleteCallback);
-  };
-}
+  if (!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+
+  const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+  Package['gcampax:dropbox-oauth'].DropboxOAuth.requestCredential(options, credentialRequestCompleteCallback);
+};

@@ -1,18 +1,19 @@
-if (Meteor.isClient) {
-  Meteor.linkWithLine = function(options, callback) {
-    if (!Meteor.userId()) {
-      throw new Meteor.Error(402, 'Please login to an existing account before link.');
-    }
-    if (!Package['storyteller:accounts-line']) {
-      throw new Meteor.Error(403, 'Please include storyteller:accounts-line package.');
-    }
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = null;
-    }
+Meteor.linkWithLine = function(options, callback) {
+  if (!Meteor.userId()) {
+    throw new Meteor.Error(402, 'Please login to an existing account before link.');
+  }
+  if (!Package['storyteller:accounts-line']) {
+    throw new Meteor.Error(403, 'Please include storyteller:accounts-line package.');
+  }
 
-    var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-    Line.requestCredential(options, credentialRequestCompleteCallback);
-  };
-}
+  if (!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+
+  const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+  Package['storyteller:accounts-line'].Line.requestCredential(options, credentialRequestCompleteCallback);
+};

@@ -1,6 +1,7 @@
-Accounts.registerLoginHandler(function (options) {
-  if (!options.link)
-    return undefined;
+import { Accounts } from 'meteor/accounts-base';
+
+Accounts.registerLoginHandler(function(options) {
+  if (!options.link) return undefined;
 
   check(options.link, {
     credentialToken: String,
@@ -11,56 +12,49 @@ Accounts.registerLoginHandler(function (options) {
     credentialSecret: Match.OneOf(null, String)
   });
 
-  var result = OAuth.retrieveCredential(options.link.credentialToken,
-                                        options.link.credentialSecret);
+  const result = OAuth.retrieveCredential(options.link.credentialToken, options.link.credentialSecret);
   if (!result) {
-    return { type: "link",
-             error: new Meteor.Error(
-               Accounts.LoginCancelledError.numericError,
-               "No matching link attempt found") };
+    return {
+      type: 'link',
+      error: new Meteor.Error(Accounts.LoginCancelledError.numericError, 'No matching link attempt found')
+    };
   }
 
-  if (result instanceof Error)
-    throw result;
-  else
-    return Accounts.LinkUserFromExternalService(
-      result.serviceName, result.serviceData, result.options);
+  if (result instanceof Error) throw result;
+  else return Accounts.LinkUserFromExternalService(result.serviceName, result.serviceData, result.options);
 });
 
 Meteor.methods({
-  'cordovaGoogle': function (serviceName, serviceData) {
-    Accounts.LinkUserFromExternalService(serviceName, serviceData, {});//passing empty object cause in any case it is not used
+  cordovaGoogle: function(serviceName, serviceData) {
+    Accounts.LinkUserFromExternalService(serviceName, serviceData, {}); //passing empty object cause in any case it is not used
   }
 });
 
-Accounts.LinkUserFromExternalService = function (serviceName, serviceData, options) {
-  options = _.clone(options || {});
+Accounts.LinkUserFromExternalService = function(serviceName, serviceData, options) {
+  // TODO Do we need this?
+  options = { ...options };
 
   //We probably throw an error instead of call update or create here.
-  if (!Meteor.userId())
-    return new Meteor.Error("You must be logged in to use LinkUserFromExternalService");
+  if (!Meteor.userId()) return new Meteor.Error('You must be logged in to use LinkUserFromExternalService');
 
-  if (serviceName === "password" || serviceName === "resume")
-    throw new Meteor.Error(
-      "Can't use LinkUserFromExternalService with internal service: "
-        + serviceName);
-  if (!( _.has(serviceData, 'id') || _.has(serviceData, 'userId')))
-    throw new Meteor.Error(
-      "'id' missing from service data for: " + serviceName);
+  if (serviceName === 'password' || serviceName === 'resume')
+    throw new Meteor.Error("Can't use LinkUserFromExternalService with internal service: " + serviceName);
+  if (!(serviceData.hasOwnProperty('id') || serviceData.hasOwnProperty('userId')))
+    throw new Meteor.Error("'id' missing from service data for: " + serviceName);
 
-  var user = Meteor.user();
+  const user = Meteor.user();
 
   if (!user) {
     return new Meteor.Error('User not found for LinkUserFromExternalService');
   }
-  var checkExistingSelector = {};
-  if(!!serviceData.userId){
+  const checkExistingSelector = {};
+  if (!!serviceData.userId) {
     serviceData.id = serviceData.userId;
     delete serviceData.userId;
   }
   checkExistingSelector['services.' + serviceName + '.id'] = serviceData.id;
-  
-  var existingUsers = Meteor.users.find(checkExistingSelector).fetch();
+
+  const existingUsers = Meteor.users.find(checkExistingSelector).fetch();
   if (existingUsers.length) {
     existingUsers.forEach(function(existingUser) {
       if (existingUser._id !== Meteor.userId())
@@ -70,17 +64,15 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 
   //we do not allow link another account from existing service.
   //XXX maybe we can override this?
-  if (user.services && user.services[serviceName] &&
-      user.services[serviceName].id !== serviceData.id) {
-
+  if (user.services && user.services[serviceName] && user.services[serviceName].id !== serviceData.id) {
     return new Meteor.Error('User can link only one account to service: ' + serviceName);
   } else {
-    var setAttrs = {};
-    _.each(serviceData, function(value, key) {
-      setAttrs["services." + serviceName + "." + key] = value;
+    const setAttrs = {};
+    Object.keys(serviceData).forEach(key => {
+      setAttrs['services.' + serviceName + '.' + key] = serviceData[key];
     });
 
-    Meteor.users.update(user._id, {$set: setAttrs});
+    Meteor.users.update(user._id, { $set: setAttrs });
     return {
       type: serviceName,
       userId: user._id
@@ -88,19 +80,19 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   }
 };
 
-Accounts.unlinkService = function (userId, serviceName, cb) {
+Accounts.unlinkService = function(userId, serviceName, cb) {
   check(userId, Match.OneOf(String, Mongo.ObjectID));
   if (typeof serviceName !== 'string') {
     throw new Meteor.Error('Service name must be string');
   }
-  var user = Meteor.users.findOne({_id: userId});
+  const user = Meteor.users.findOne({ _id: userId });
   if (serviceName === 'resume' || serviceName === 'password') {
-    throw new Meteor.Error('Interal services cannot be unlinked: ' + serviceName);
+    throw new Meteor.Error('Internal services cannot be unlinked: ' + serviceName);
   }
 
   if (user.services[serviceName]) {
-    var newServices = _.omit(user.services, serviceName);
-    Meteor.users.update({_id: user._id}, {$set: {services: newServices}}, function (result) {
+    const newServices = _.omit(user.services, serviceName);
+    Meteor.users.update({ _id: user._id }, { $set: { services: newServices } }, function(result) {
       if (cb && typeof cb === 'function') {
         cb(result);
       }
