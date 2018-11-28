@@ -1,4 +1,7 @@
+import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
+import { check, Match } from 'meteor/check';
+import { OAuth } from 'meteor/oauth';
 
 Accounts.registerLoginHandler(function(options) {
   if (!options.link) return undefined;
@@ -91,7 +94,8 @@ Accounts.unlinkService = function(userId, serviceName, cb) {
   }
 
   if (user.services[serviceName]) {
-    const newServices = _.omit(user.services, serviceName);
+    const newServices = { ...user.services };
+    delete newServices[serviceName];
     Meteor.users.update({ _id: user._id }, { $set: { services: newServices } }, function(result) {
       if (cb && typeof cb === 'function') {
         cb(result);

@@ -1,4 +1,5 @@
 import { Accounts } from 'meteor/accounts-base';
+import { OAuth } from 'meteor/oauth';
 import './core-services/facebook';
 import './core-services/github';
 import './core-services/google';
