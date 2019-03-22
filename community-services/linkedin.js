@@ -5,8 +5,8 @@ Meteor.linkWithLinkedIn = function(options, callback) {
   if (!Meteor.userId()) {
     throw new Meteor.Error(402, 'Please login to an existing account before link.');
   }
-  if (!Package['jonperl:linkedin']) {
-    throw new Meteor.Error(403, 'Please include jonperl:linkedin package');
+  if (!Package['pauli:linkedin-oauth']) {
+    throw new Meteor.Error(403, 'Please include pauli:linkedin-oauth package');
   }
 
   if (!callback && typeof options === 'function') {
@@ -15,5 +15,5 @@ Meteor.linkWithLinkedIn = function(options, callback) {
   }
 
   const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-  Package['jonperl:linkedin'].LinkedIn.requestCredential(options, credentialRequestCompleteCallback);
+  Package['pauli:linkedin-oauth'].LinkedIn.requestCredential(options, credentialRequestCompleteCallback);
 };
