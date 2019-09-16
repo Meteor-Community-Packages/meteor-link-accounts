@@ -1,4 +1,7 @@
 # Meteor Link Accounts
+
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 A [Meteor package](https://atmospherejs.com/bozhao/link-accounts) designed to links social network accounts without any hassles.
 
 ## Goals
