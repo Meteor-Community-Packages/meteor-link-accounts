@@ -55,7 +55,7 @@ Given the `userId` and the name of the service (`serviceName`) as it is named in
 * mrt:accounts-vk
 * mikepol:accounts-ok
 * mikepol:accounts-mailru
-* jonperl:accounts-linkedin
+* jonperl:accounts-linkedin (depracated) / pauli:linkedin-oauth
 * garbolino:accounts-soundcloud
 * alexbeauchemin:accounts-twitch
 * nicolaiwadstrom:meteor-angellist
