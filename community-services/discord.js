@@ -15,5 +15,5 @@ Meteor.linkWithDiscord = function(options, callback) {
   }
 
   const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
-  Package['lichthagel:accounts-discord'].Discord.requestCredential(options, credentialRequestCompleteCallback);
+  Package['lichthagel:discord-oauth'].Discord.requestCredential(options, credentialRequestCompleteCallback);
 };
