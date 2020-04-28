@@ -1,0 +1,45 @@
+{
+  "name": "meteor-link-accounts",
+  "version": "2.2.0",
+  "private": true,
+  "description": "Template Meteor package for FOSS",
+  "main": "package.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meteor-Community-Packages/meteor-link-accounts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Meteor-Community-Packages/meteor-link-accounts/issues"
+  },
+  "homepage": "https://github.com/Meteor-Community-Packages/meteor-link-accounts#readme",
+  "readme": "README.md",
+  "scripts": {
+    "test": "npm run lint && meteor test-packages ./",
+    "lint": "./node_modules/.bin/standard --fix",
+    "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i",
+    "all-contributors": "./node_modules/.bin/all-contributors",
+    "all-contributors-generate": "./node_modules/.bin/all-contributors generate"
+  },
+  "license": "MIT",
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "Package"
+    ]
+  },
+  "funding": {
+    "type": "PayPal",
+    "url": "https://www.paypal.me/JDvorak"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "bash preCommit.sh"
+    }
+  },
+  "devDependencies": {
+    "all-contributors-cli": "^6.11.0",
+    "babel-eslint": "^10.0.3",
+    "husky": "^3.0.9",
+    "standard": "^14.3.1"
+  }
+}
