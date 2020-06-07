@@ -11,7 +11,7 @@
 * Format changelog
 * Added GitHub settings & legal stuff
 
-##v. 2.1.0 - 18.09.2019
+## v. 2.1.0 - 18.09.2019
 * `jonperl:linkedin` has been depracated in favor of `pauli:linkedin-oauth` in order to keep up with changes in LinkedIn API. You will see a depracetion warning in your app for this. The old package will work, but will be removed in future releases.
 
 ## v. 2.0.2
