@@ -10,6 +10,7 @@ Package.onUse(function (api) {
 
   api.imply('accounts-base', ['client', 'server'])
   api.use(['ecmascript', 'check', 'accounts-oauth', 'oauth'])
+  api.use('callback-hook', 'server')
 
   api.mainModule('link_accounts_client.js', 'client')
   api.mainModule('link_accounts_server.js', 'server')

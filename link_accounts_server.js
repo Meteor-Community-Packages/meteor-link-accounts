@@ -3,6 +3,28 @@ import { Accounts } from 'meteor/accounts-base'
 import { Mongo } from 'meteor/mongo'
 import { check, Match } from 'meteor/check'
 import { OAuth } from 'meteor/oauth'
+import { Hook } from 'meteor/callback-hook'
+
+/**
+ * Hooks definition and registration
+ */
+Accounts._onLink = new Hook({
+  bindEnvironment: false,
+  debugPrintExceptions: "onLink callback"
+})
+Accounts.onLink = (func) => Accounts._onLink.register(func)
+
+Accounts._beforeLink = new Hook({
+  bindEnvironment: false,
+  debugPrintExceptions: "beforeLink callback"
+})
+Accounts.beforeLink = (func) => Accounts._beforeLink.register(func)
+
+Accounts._onUnlink = new Hook({
+  bindEnvironment: false,
+  debugPrintExceptions: "onUnlink callback"
+})
+Accounts.onUnlink = (func) => Accounts._onUnlink.register(func)
 
 Accounts.registerLoginHandler(function (options) {
   if (!options.link) return undefined
@@ -35,7 +57,6 @@ Meteor.methods({
 })
 
 Accounts.LinkUserFromExternalService = function (serviceName, serviceData, options) {
-  // TODO Do we need this?
   options = { ...options }
 
   // We probably throw an error instead of call update or create here.
@@ -69,11 +90,25 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
     return new Meteor.Error('User can link only one account to service: ' + serviceName)
   } else {
     const setAttrs = {}
+
+    // Before link hook
+    Accounts._beforeLink.each(callback => {
+      return callback({ type: serviceName, serviceData, user, serviceOptions: options }) || true
+    })
+
     Object.keys(serviceData).forEach(key => {
       setAttrs['services.' + serviceName + '.' + key] = serviceData[key]
     })
 
     Meteor.users.update(user._id, { $set: setAttrs })
+
+    // On link hook
+    const updatedUser = Meteor.user()
+    Accounts._onLink.each(callback => {
+      callback({ type: serviceName, serviceData, user: updatedUser, serviceOptions: options })
+      return true
+    })
+
     return {
       type: serviceName,
       userId: user._id
@@ -98,6 +133,11 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
       if (cb && typeof cb === 'function') {
         cb(result)
       }
+    })
+    // On unlink hook
+    Accounts._onUnlink.each(callback => {
+      callback({ type: serviceName, user })
+      return true
     })
   } else {
     throw new Meteor.Error(500, 'no service')
