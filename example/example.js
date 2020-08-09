@@ -1,27 +1,31 @@
+import { Meteor } from 'meteor/meteor'
+import { Accounts } from 'meteor/accounts-base'
+import { Template } from 'meteor/templating'
+
 if (Meteor.isClient) {
   Template.linkTemplate.events({
     'click .link-github': function () {
-      Meteor.linkWithGithub();
+      Meteor.linkWithGithub()
     },
     'click .unlink-github': function () {
-      Meteor.call('_accounts/unlink/service', Meteor.userId(), 'github');
+      Meteor.call('_accounts/unlink/service', Meteor.userId(), 'github')
     }
-  });
+  })
 
   Template.linkTemplate.helpers({
     services: function () {
-      var user = Meteor.user(); 
+      var user = Meteor.user()
       if (user) {
-        return _.keys(user.services);
+        return Object.keys(user.services)
       } else {
-        return;
+
       }
     }
-  });
+  })
 }
 
 if (Meteor.isServer) {
-  //XXX input your api keys here or follow the onscreen popup  instructions
+  // XXX input your api keys here or follow the onscreen popup  instructions
   /*
   ServiceConfiguration.configurations.upsert({service: 'github'}, {
     $set: {
@@ -31,7 +35,6 @@ if (Meteor.isServer) {
     }
   });
 
-
   ServiceConfiguration.configurations.upsert({service: 'twitter'}, {
     $set: {
       api_key: 'API_KEY',
@@ -40,8 +43,8 @@ if (Meteor.isServer) {
   });
   */
   Meteor.methods({
-  '_accounts/unlink/service': function (userId, serviceName) {
-    Accounts.unlinkService(userId, serviceName);
-  }
-  });
+    '_accounts/unlink/service': function (userId, serviceName) {
+      Accounts.unlinkService(userId, serviceName)
+    }
+  })
 }

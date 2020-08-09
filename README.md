@@ -27,6 +27,29 @@ You will call this on the page where you allow your users to connect to other se
 #### Accounts.unlinkService(userId, serviceName)
 Given the `userId` and the name of the service (`serviceName`) as it is named in the user document (most often lower case name of the service).
 
+### Hooks
+There are 3 hooks available to you on the server at various time during the link process.
+#### Accounts.beforeLink
+Called before user account is linked with service. The hook will receive object with the following parameters:
+* `type` - service name
+* `serviceData` - data received from the service provider
+* `user` - current user object
+* `serviceOptions` - options that were used to call the service
+
+If you return false the linking will be interrupted. 
+
+#### Accounts.onLink
+Called after user has been linked with a service. The hook will receive object with the following parameters:
+* `type` - service name
+* `serviceData` - data received from the service provider
+* `user` - updated user object
+* `serviceOptions` - options that were used to call the service
+
+#### Accounts.onUnlink
+Called after user is unlinking the service. The hook will receive object with the following parameters:
+* `type` - service name that was unlinked
+* `user` - user object before unlinking
+
 ## Design notes:
 1. Piggyback on existing Meteor oauth login system. Use login handler.
 

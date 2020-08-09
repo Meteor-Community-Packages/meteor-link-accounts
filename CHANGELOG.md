@@ -1,5 +1,12 @@
 # Changelog
 
+## v. 2.2.0 - unreleased
+* Updated example to the newest Meteor version
+* Bumped minimum required version of Meteor to 1.4.3
+* Add missing imports
+* Fix code to adhere to StandardJS
+* Add hooks
+
 ## v. 2.1.1 - 28.4.2020
 * Fix error in Discord connector
 * Format changelog
