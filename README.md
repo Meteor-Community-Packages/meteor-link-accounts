@@ -28,7 +28,7 @@ You will call this on the page where you allow your users to connect to other se
 Given the `userId` and the name of the service (`serviceName`) as it is named in the user document (most often lower case name of the service).
 
 ### Hooks
-There are 3 hooks available to you on the server at various time during the link process.
+There are 3 hooks available to you on the server at various time during the link process. All are triggered on the server side.
 #### Accounts.beforeLink
 Called before user account is linked with service. The hook will receive object with the following parameters:
 * `type` - service name
