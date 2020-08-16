@@ -10,19 +10,19 @@ import { Hook } from 'meteor/callback-hook'
  */
 Accounts._onLink = new Hook({
   bindEnvironment: false,
-  debugPrintExceptions: "onLink callback"
+  debugPrintExceptions: 'onLink callback'
 })
 Accounts.onLink = (func) => Accounts._onLink.register(func)
 
 Accounts._beforeLink = new Hook({
   bindEnvironment: false,
-  debugPrintExceptions: "beforeLink callback"
+  debugPrintExceptions: 'beforeLink callback'
 })
 Accounts.beforeLink = (func) => Accounts._beforeLink.register(func)
 
 Accounts._onUnlink = new Hook({
   bindEnvironment: false,
-  debugPrintExceptions: "onUnlink callback"
+  debugPrintExceptions: 'onUnlink callback'
 })
 Accounts.onUnlink = (func) => Accounts._onUnlink.register(func)
 
@@ -85,7 +85,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   }
 
   // we do not allow link another account from existing service.
-  // XXX maybe we can override this?
+  // TODO maybe we can override this?
   if (user.services && user.services[serviceName] && user.services[serviceName].id !== serviceData.id) {
     return new Meteor.Error('User can link only one account to service: ' + serviceName)
   } else {
@@ -93,7 +93,9 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 
     // Before link hook
     Accounts._beforeLink.each(callback => {
-      return callback({ type: serviceName, serviceData, user, serviceOptions: options }) || true
+      // eslint-disable-next-line standard/no-callback-literal
+      callback({ type: serviceName, serviceData, user, serviceOptions: options })
+      return true
     })
 
     Object.keys(serviceData).forEach(key => {
@@ -103,9 +105,9 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
     Meteor.users.update(user._id, { $set: setAttrs })
 
     // On link hook
-    const updatedUser = Meteor.user()
     Accounts._onLink.each(callback => {
-      callback({ type: serviceName, serviceData, user: updatedUser, serviceOptions: options })
+      // eslint-disable-next-line standard/no-callback-literal
+      callback({ type: serviceName, serviceData, user: Meteor.user(), serviceOptions: options })
       return true
     })
 
@@ -136,7 +138,8 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
     })
     // On unlink hook
     Accounts._onUnlink.each(callback => {
-      callback({ type: serviceName, user })
+      // eslint-disable-next-line standard/no-callback-literal
+      callback({ type: serviceName, user: Meteor.user() })
       return true
     })
   } else {
