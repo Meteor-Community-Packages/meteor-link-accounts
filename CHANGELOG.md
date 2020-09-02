@@ -1,6 +1,6 @@
 # Changelog
 
-## v. 2.2.0 - 16.8.2020
+## v. 2.2.0 - 2.9.2020
 * Updated example to Meteor 1.10.2
 * Bumped minimum required version of Meteor to 1.4.3
 * Add missing imports
