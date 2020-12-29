@@ -1,5 +1,9 @@
 # Changelog
 
+## v. 2.3.0 - UNRELEASED
+* Added extra check on linking accounts and made connection errors provide a bit more information
+* Updated development dependencies
+
 ## v. 2.2.1 - 6.9.2020
 * Fix Meteor Developer Accounts link
 

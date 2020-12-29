@@ -46,7 +46,7 @@ Accounts.registerLoginHandler(function (options) {
     }
   }
 
-  if (result instanceof Error) throw result
+  if (result instanceof Error || result instanceof Meteor.Error) throw result
   else return Accounts.LinkUserFromExternalService(result.serviceName, result.serviceData, result.options)
 })
 
@@ -80,7 +80,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
   const existingUsers = Meteor.users.find(checkExistingSelector).fetch()
   if (existingUsers.length) {
     existingUsers.forEach(function (existingUser) {
-      if (existingUser._id !== Meteor.userId()) { throw new Meteor.Error('This social account is already in use by other user') }
+      if (existingUser._id !== Meteor.userId()) { throw new Meteor.Error(`Provided ${serviceName} account is already in use by other user`) }
     })
   }
 
@@ -93,7 +93,7 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
 
     // Before link hook
     Accounts._beforeLink.each(callback => {
-      // eslint-disable-next-line standard/no-callback-literal
+      // eslint-disable-next-line node/no-callback-literal
       callback({ type: serviceName, serviceData, user, serviceOptions: options })
       return true
     })
@@ -102,11 +102,12 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
       setAttrs['services.' + serviceName + '.' + key] = serviceData[key]
     })
 
-    Meteor.users.update(user._id, { $set: setAttrs })
+    const updated = Meteor.users.update(user._id, { $set: setAttrs })
+    if (updated !== 1) { throw new Meteor.Error(`Failed to link user ${Meteor.userId()} with ${serviceName} account`) }
 
     // On link hook
     Accounts._onLink.each(callback => {
-      // eslint-disable-next-line standard/no-callback-literal
+      // eslint-disable-next-line node/no-callback-literal
       callback({ type: serviceName, serviceData, user: Meteor.user(), serviceOptions: options })
       return true
     })
@@ -138,7 +139,7 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
     })
     // On unlink hook
     Accounts._onUnlink.each(callback => {
-      // eslint-disable-next-line standard/no-callback-literal
+      // eslint-disable-next-line node/no-callback-literal
       callback({ type: serviceName, user: Meteor.user() })
       return true
     })

@@ -14,11 +14,9 @@ if (Meteor.isClient) {
 
   Template.linkTemplate.helpers({
     services: function () {
-      var user = Meteor.user()
+      const user = Meteor.user()
       if (user) {
         return Object.keys(user.services)
-      } else {
-
       }
     }
   })
