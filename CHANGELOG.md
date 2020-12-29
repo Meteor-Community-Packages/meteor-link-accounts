@@ -3,6 +3,7 @@
 ## v. 2.3.0 - UNRELEASED
 * Added extra check on linking accounts and made connection errors provide a bit more information
 * Updated development dependencies
+* Add support for MS Office 365 logins via `lindoelio:accounts-office365` and `ermlab:accounts-office365`
 
 ## v. 2.2.1 - 6.9.2020
 * Fix Meteor Developer Accounts link

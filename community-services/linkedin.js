@@ -10,14 +10,14 @@ Meteor.linkWithLinkedIn = function (options, callback) {
     throw new Meteor.Error(403, 'Please include pauli:linkedin-oauth package')
   }
 
-  // Depracation of jonperl:linkedin
+  // Deprecation of jonperl:linkedin
   if (Package['jonperl:linkedin']) {
-    console.warn('jonperl:linkedin has been depracated in meteor linked accounts in favor of pauli:linkedin-oauth to keep up with linkedin api changes')
+    console.warn('jonperl:linkedin has been deprecated in meteor linked accounts in favor of pauli:linkedin-oauth to keep up with linkedin api changes')
   }
   if (!Package['jonperl:linkedin'] && !Package['pauli:linkedin-oauth']) {
     throw new Meteor.Error(403, 'Please include pauli:linkedin-oauth package')
   }
-  // End of depracation messages
+  // End of deprecation messages
 
   if (!callback && typeof options === 'function') {
     callback = options
