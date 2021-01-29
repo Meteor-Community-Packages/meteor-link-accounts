@@ -1,6 +1,6 @@
 # Changelog
 
-## v. 2.3.0 - UNRELEASED
+## v. 2.3.0 - 29.1.2021
 * Added extra check on linking accounts and made connection errors provide a bit more information
 * Updated development dependencies
 * Add support for MS Office 365 logins via `lindoelio:accounts-office365` and `ermlab:accounts-office365`

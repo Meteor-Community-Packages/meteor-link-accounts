@@ -1,6 +1,6 @@
 {
   "name": "meteor-link-accounts",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "private": true,
   "description": "Template Meteor package for FOSS",
   "main": "package.js",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "all-contributors-cli": "^6.19.0",
     "babel-eslint": "^10.1.0",
-    "husky": "^4.3.6",
+    "husky": "^4.3.8",
     "standard": "^16.0.3"
   }
 }
