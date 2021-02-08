@@ -16,8 +16,8 @@ Meteor.linkWithOffice = function (options, callback) {
 
   const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback)
   if (Package['lindoelio:accounts-office365']) {
-    Package['lindoelio:accounts-office365'].Office365.requestCredential(options, credentialRequestCompleteCallback)
+    Package['lindoelio:office365-oauth'].Office365.requestCredential(options, credentialRequestCompleteCallback)
   } else if (Package['ermlab:accounts-office365']) {
-    Package['ermlab:accounts-office365'].Office365.requestCredential(options, credentialRequestCompleteCallback)
+    Package['ermlab:office365-oauth'].Office365.requestCredential(options, credentialRequestCompleteCallback)
   }
 }

@@ -1,5 +1,8 @@
 # Changelog
 
+## v. 2.3.2 - 8.2.2021
+* Fix bugs in MS Office connector
+
 ## v. 2.3.1 - 8.2.2021
 * Fix a detection bug in MS Office connector
 
