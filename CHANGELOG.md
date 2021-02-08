@@ -1,5 +1,8 @@
 # Changelog
 
+## v. 2.3.1 - 8.2.2021
+* Fix a detection bug in MS Office connector
+
 ## v. 2.3.0 - 29.1.2021
 * Added extra check on linking accounts and made connection errors provide a bit more information
 * Updated development dependencies
