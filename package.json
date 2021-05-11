@@ -18,7 +18,8 @@
     "lint": "./node_modules/.bin/standard --fix",
     "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i",
     "all-contributors": "./node_modules/.bin/all-contributors",
-    "all-contributors-generate": "./node_modules/.bin/all-contributors generate"
+    "all-contributors-generate": "./node_modules/.bin/all-contributors generate",
+    "prepare": "husky install"
   },
   "license": "MIT",
   "standard": {
@@ -31,15 +32,11 @@
     "type": "GitHub",
     "url": "https://github.com/sponsors/StorytellerCZ"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "bash preCommit.sh"
-    }
-  },
   "devDependencies": {
-    "all-contributors-cli": "^6.19.0",
+    "@types/meteor": "^1.4.70",
+    "all-contributors-cli": "^6.20.0",
     "babel-eslint": "^10.1.0",
-    "husky": "^4.3.8",
+    "husky": "^6.0.0",
     "standard": "^16.0.3"
   }
 }
