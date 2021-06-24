@@ -1,8 +1,8 @@
 {
   "name": "meteor-link-accounts",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "private": true,
-  "description": "Template Meteor package for FOSS",
+  "description": "Link social accounts for Meteor",
   "main": "package.js",
   "repository": {
     "type": "git",
