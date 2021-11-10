@@ -92,11 +92,14 @@ Accounts.LinkUserFromExternalService = function (serviceName, serviceData, optio
     const setAttrs = {}
 
     // Before link hook
+    let shouldStop = false
     Accounts._beforeLink.each(callback => {
       // eslint-disable-next-line node/no-callback-literal
-      callback({ type: serviceName, serviceData, user, serviceOptions: options })
-      return true
+      let result = callback({ type: serviceName, serviceData, user, serviceOptions: options })
+      if (!result) shouldStop = true
+      return !!result
     })
+    if (shouldStop) return null
 
     Object.keys(serviceData).forEach(key => {
       setAttrs['services.' + serviceName + '.' + key] = serviceData[key]
