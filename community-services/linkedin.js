@@ -26,7 +26,7 @@ Meteor.linkWithLinkedIn = function (options, callback) {
 
   const credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback)
   if (Package['pauli:linkedin-oauth']) {
-    Package['pauli:linkedin-oauth'].LinkedIn.requestCredential(options, credentialRequestCompleteCallback)
+    Package['pauli:linkedin-oauth'].Linkedin.requestCredential(options, credentialRequestCompleteCallback)
   } else if (Package['jonperl:linkedin']) {
     Package['jonperl:linkedin'].LinkedIn.requestCredential(options, credentialRequestCompleteCallback)
   }
