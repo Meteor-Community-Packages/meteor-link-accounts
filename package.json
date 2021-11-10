@@ -1,6 +1,6 @@
 {
   "name": "meteor-link-accounts",
-  "version": "2.4.0",
+  "version": "2.3.3",
   "private": true,
   "description": "Link social accounts for Meteor",
   "main": "package.js",
@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "standard": {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "globals": [
       "Package"
     ]
@@ -33,10 +33,12 @@
     "url": "https://github.com/sponsors/StorytellerCZ"
   },
   "devDependencies": {
-    "@types/meteor": "^1.4.70",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/preset-env": "^7.16.0",
+    "@types/meteor": "^1.4.84",
     "all-contributors-cli": "^6.20.0",
-    "babel-eslint": "^10.1.0",
-    "husky": "^6.0.0",
-    "standard": "^16.0.3"
+    "husky": "^7.0.0",
+    "standard": "^16.0.4"
   }
 }

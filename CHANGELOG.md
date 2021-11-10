@@ -1,5 +1,9 @@
 # Changelog
 
+## v. 2.3.3 - 10.11.2021
+* Upgrade eslint-parser
+* 
+
 ## v. 2.3.2 - 8.2.2021
 * Fix bugs in MS Office connector
 
