@@ -1,8 +1,13 @@
 # Changelog
 
-## v. 2.3.3 - 10.11.2021
+## v. 2.4.1 - 10.11.2021
 * Upgrade eslint-parser
 * Fix wrong uppercase in the word `linkedIn` for `pauli:linkedin-oauth`
+
+## v. 2.4.0 - 24.6.2021
+
+* Updated dependencies
+* Compatibility update for Meteor 2.3
 
 ## v. 2.3.2 - 8.2.2021
 * Fix bugs in MS Office connector
