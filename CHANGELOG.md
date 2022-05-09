@@ -1,6 +1,9 @@
 # Changelog
 
-## v. 2.5.0 - xx.5.2022
+## v. 2.6.0 - XX.5.2022
+* Added `freedombase:web3-login`
+
+## v. 2.5.0 - 9.5.2022
 * Make hooks stoppable
 * Fix commit script
 * Added Apple provider for `quave:accounts-apple` or `bigowl:accounts-apple` package
