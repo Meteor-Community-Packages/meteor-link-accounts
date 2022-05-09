@@ -90,6 +90,7 @@ Called after user is unlinking the service. The hook will receive object with th
 * leonzhang1109:accounts-qq
 * storyteller:accounts-line
 * lindoelio:accounts-office365 / ermlab:accounts-office365
+* quave:accounts-apple / bigowl:accounts-apple
 
 ## License
 MIT
