@@ -42,7 +42,7 @@ Accounts.oauth.tryLinkAfterPopupClosed = function (credentialToken, callback) {
     userCallback:
       callback &&
       function (err) {
-        // Allow server to specify a specify subclass of errors. We should come
+        // Allow server to specify subclass of errors. We should come
         // up with a more generic way to do this!
         if (err && err instanceof Meteor.Error && err.error === Accounts.LoginCancelledError.numericError) {
           callback(new Accounts.LoginCancelledError(err.details))

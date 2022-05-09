@@ -1,5 +1,10 @@
 # Changelog
 
+## v. 2.5.0 - xx.5.2022
+* Make hooks stoppable
+* Fix commit script
+* Added Apple provider for `quave:accounts-apple` or `bigowl:accounts-apple` package
+
 ## v. 2.4.1 - 10.11.2021
 * Upgrade eslint-parser
 * Fix wrong uppercase in the word `linkedIn` for `pauli:linkedin-oauth`
