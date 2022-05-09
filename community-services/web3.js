@@ -22,7 +22,7 @@ Meteor.linkWithWeb3 = function (options, callback) {
   // Since the flow for Web3 is different we are using a custom flow here.
   const credentialRequestCompleteCallback = (error, address) => {
     if (error.error === 403) {
-      Meteor.call('bozhao:linkAccountsWeb3', address)
+      Meteor.call('bozhao:linkAccountsWeb3', address, callback)
     } else {
       throw error
     }
