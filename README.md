@@ -23,6 +23,9 @@ You will call this on the page where you allow your users to connect to other se
 
 `options` is expecting configuration object. Most often that is going to be: `{ loginStyle: 'popup' }`
 
+##### `freedombase:web3-login`
+The `options` object accepts `linkMessage` key where you can set message for signature.
+
 ### Server side
 #### Accounts.unlinkService(userId, serviceName)
 Given the `userId` and the name of the service (`serviceName`) as it is named in the user document (most often lower case name of the service).
@@ -91,6 +94,7 @@ Called after user is unlinking the service. The hook will receive object with th
 * storyteller:accounts-line
 * lindoelio:accounts-office365 / ermlab:accounts-office365
 * quave:accounts-apple / bigowl:accounts-apple
+* freedombase:web3-login
 
 ## License
 MIT
