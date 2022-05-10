@@ -1,6 +1,6 @@
 # Changelog
 
-## v. 2.6.0 - XX.5.2022
+## v. 2.6.0 - 10.5.2022
 * Added `freedombase:web3-login`
 * Slight code re-format for better readability
 
