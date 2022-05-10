@@ -2,6 +2,7 @@
 
 ## v. 2.6.0 - XX.5.2022
 * Added `freedombase:web3-login`
+* Slight code re-format for better readability
 
 ## v. 2.5.0 - 9.5.2022
 * Make hooks stoppable
