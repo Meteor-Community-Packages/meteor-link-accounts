@@ -70,7 +70,9 @@ Meteor.methods({
   },
   'bozhao:linkAccountsWeb3': function (address) {
     check(address, String)
-    Accounts.LinkUserFromExternalService(
+    const user = Meteor.users.findOne({ 'services.web3.address': address })
+    if (user) throw new Meteor.Error('500', 'This address is already assigned!')
+    return Accounts.LinkUserFromExternalService(
       'web3',
       { id: address, address, verified: false },
       {}

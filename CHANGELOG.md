@@ -1,5 +1,8 @@
 # Changelog
 
+## v. 2.6.1 - 11.5.2022
+* Fixes for web3 login to keep up with change in `freedombase:web3-login`
+
 ## v. 2.6.0 - 10.5.2022
 * Added `freedombase:web3-login`
 * Slight code re-format for better readability
