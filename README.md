@@ -95,6 +95,7 @@ Called after user is unlinking the service. The hook will receive object with th
 * lindoelio:accounts-office365 / ermlab:accounts-office365
 * quave:accounts-apple / bigowl:accounts-apple
 * freedombase:web3-login
+* lichthagel:accounts-discord / storyteller:accounts-discord
 
 ## License
 MIT
