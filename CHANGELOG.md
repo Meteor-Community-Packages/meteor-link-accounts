@@ -1,5 +1,10 @@
 # Changelog
 
+## v. 2.7.0 - 13.8.2023
+* Added `storyteller:accounts-discord` as a new version for Discord connector
+* Added new build target for Meteor v 2.9.1
+* Add re-tries for popup closures in `tryLinkAfterPopupClosed` to mirror Meteor login behavior and fix issues when `credentialSecret` is not set fast enough
+
 ## v. 2.6.1 - 11.5.2022
 * Fixes for web3 login to keep up with change in `freedombase:web3-login`
 

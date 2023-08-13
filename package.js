@@ -1,12 +1,12 @@
 Package.describe({
   summary: 'Meteor external service link system',
-  version: '2.6.1',
+  version: '2.7.0',
   git: 'https://github.com/yubozhao/meteor-link-accounts',
   name: 'bozhao:link-accounts',
   description: 'Link social accounts for Meteor'
 })
 Package.onUse(function (api) {
-  api.versionsFrom(['1.12', '2.3'])
+  api.versionsFrom(['1.12.1', '2.3.6', '2.9.1'])
 
   api.imply('accounts-base', ['client', 'server'])
   api.use(['ecmascript', 'check', 'accounts-oauth', 'oauth'])
