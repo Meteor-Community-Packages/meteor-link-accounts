@@ -29,8 +29,29 @@ import './community-services/line'
 import './community-services/office365'
 import './community-services/web3'
 
-Accounts.oauth.tryLinkAfterPopupClosed = function (credentialToken, callback) {
+Accounts.oauth.tryLinkAfterPopupClosed = function (
+  credentialToken,
+  callback,
+  shouldRetry = true
+) {
   const credentialSecret = OAuth._retrieveCredentialSecret(credentialToken)
+
+  if (!credentialSecret) {
+    if (!shouldRetry) {
+      return
+    }
+    Meteor.setTimeout(
+      () =>
+        Accounts.oauth.tryLinkAfterPopupClosed(
+          credentialToken,
+          callback,
+          false
+        ),
+      500
+    )
+    return
+  }
+
   Accounts.callLoginMethod({
     methodArguments: [
       {

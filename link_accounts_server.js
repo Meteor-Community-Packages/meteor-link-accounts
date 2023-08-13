@@ -53,12 +53,13 @@ Accounts.registerLoginHandler(function (options) {
   }
 
   if (result instanceof Error || result instanceof Meteor.Error) throw result
-  else
+  else {
     return Accounts.LinkUserFromExternalService(
       result.serviceName,
       result.serviceData,
       result.options
     )
+  }
 })
 
 Meteor.methods({
@@ -88,10 +89,11 @@ Accounts.LinkUserFromExternalService = function (
   options = { ...options }
 
   // We probably throw an error instead of call update or create here.
-  if (!Meteor.userId())
+  if (!Meteor.userId()) {
     return new Meteor.Error(
       'You must be logged in to use LinkUserFromExternalService'
     )
+  }
 
   if (serviceName === 'password' || serviceName === 'resume') {
     throw new Meteor.Error(
@@ -143,7 +145,7 @@ Accounts.LinkUserFromExternalService = function (
     let shouldStop = false
     Accounts._beforeLink.each((callback) => {
       // eslint-disable-next-line node/no-callback-literal
-      let result = callback({
+      const result = callback({
         type: serviceName,
         serviceData,
         user,
