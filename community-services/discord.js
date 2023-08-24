@@ -9,6 +9,9 @@ Meteor.linkWithDiscord = function (options, callback) {
     throw new Meteor.Error(403, 'Please include lichthagel:accounts-discord or storyteller:accounts-discord package')
   }
   // TODO deprecate lichthagel:accounts-discord as it has not been updated in years and is not ready for Meteor 3
+  if (Package['lichthagel:accounts-discord']) {
+    console.warn('lichthagel:accounts-discord has not been updated in years and has been deprecated in bozhao:link-accounts, please upgrade to storyteller:accounts-discord.')
+  }
 
   if (!callback && typeof options === 'function') {
     callback = options

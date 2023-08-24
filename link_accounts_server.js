@@ -26,7 +26,7 @@ Accounts._onUnlink = new Hook({
 })
 Accounts.onUnlink = (func) => Accounts._onUnlink.register(func)
 
-Accounts.registerLoginHandler(function (options) {
+Accounts.registerLoginHandler(async function (options) {
   if (!options.link) return undefined
 
   check(options.link, {
@@ -54,7 +54,7 @@ Accounts.registerLoginHandler(function (options) {
 
   if (result instanceof Error || result instanceof Meteor.Error) throw result
   else {
-    return Accounts.LinkUserFromExternalService(
+    return await Accounts.LinkUserFromExternalService(
       result.serviceName,
       result.serviceData,
       result.options
@@ -64,16 +64,16 @@ Accounts.registerLoginHandler(function (options) {
 
 Meteor.methods({
   // TODO namespace this method for next major release
-  cordovaGoogle: function (serviceName, serviceData) {
+  cordovaGoogle: async function (serviceName, serviceData) {
     check(serviceName, String)
     check(serviceData, Object)
-    Accounts.LinkUserFromExternalService(serviceName, serviceData, {}) // passing empty object cause in any case it is not used
+    await Accounts.LinkUserFromExternalService(serviceName, serviceData, {}) // passing empty object cause in any case it is not used
   },
-  'bozhao:linkAccountsWeb3': function (address) {
+  'bozhao:linkAccountsWeb3': async function (address) {
     check(address, String)
     const user = Meteor.users.findOne({ 'services.web3.address': address })
     if (user) throw new Meteor.Error('500', 'This address is already assigned!')
-    return Accounts.LinkUserFromExternalService(
+    return await Accounts.LinkUserFromExternalService(
       'web3',
       { id: address, address, verified: false },
       {}
@@ -81,7 +81,7 @@ Meteor.methods({
   }
 })
 
-Accounts.LinkUserFromExternalService = function (
+Accounts.LinkUserFromExternalService = async function (
   serviceName,
   serviceData,
   options
@@ -117,7 +117,7 @@ Accounts.LinkUserFromExternalService = function (
   }
   checkExistingSelector['services.' + serviceName + '.id'] = serviceData.id
 
-  const existingUsers = Meteor.users.find(checkExistingSelector).fetch()
+  const existingUsers = await Meteor.users.find(checkExistingSelector).fetchAsync()
   if (existingUsers.length) {
     existingUsers.forEach(function (existingUser) {
       if (existingUser._id !== Meteor.userId()) {
@@ -160,7 +160,7 @@ Accounts.LinkUserFromExternalService = function (
       setAttrs['services.' + serviceName + '.' + key] = serviceData[key]
     })
 
-    const updated = Meteor.users.update(user._id, { $set: setAttrs })
+    const updated = await Meteor.users.updateAsync(user._id, { $set: setAttrs })
     if (updated !== 1) {
       throw new Meteor.Error(
         `Failed to link user ${Meteor.userId()} with ${serviceName} account`
@@ -186,7 +186,7 @@ Accounts.LinkUserFromExternalService = function (
   }
 }
 
-Accounts.unlinkService = function (userId, serviceName, cb) {
+Accounts.unlinkService = async function (userId, serviceName, cb) {
   check(userId, Match.OneOf(String, Mongo.ObjectID))
   if (typeof serviceName !== 'string') {
     throw new Meteor.Error('Service name must be string')
@@ -201,7 +201,7 @@ Accounts.unlinkService = function (userId, serviceName, cb) {
   if (user.services[serviceName]) {
     const newServices = { ...user.services }
     delete newServices[serviceName]
-    Meteor.users.update(
+    await Meteor.users.updateAsync(
       { _id: user._id },
       { $set: { services: newServices } },
       function (result) {

@@ -1,5 +1,14 @@
 # Changelog
 
+## v. 2.8.0
+* More async calls have been added through the codebase
+* Minimum Meteor version is `2.9.11`
+* Deprecated `lichthagel:accounts-discord` which will be removed in v3
+
+## v. 2.7.1-alpha.1 - 23.8.2023
+* Added build target for Meteor 3 `alpha.11`
+* Updated npm dev dependencies
+
 ## v. 2.7.0 - 13.8.2023
 * Added `storyteller:accounts-discord` as a new version for Discord connector
 * Added new build target for Meteor v 2.9.1
