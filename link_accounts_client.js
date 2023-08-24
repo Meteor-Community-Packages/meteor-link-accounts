@@ -56,8 +56,8 @@ Accounts.oauth.tryLinkAfterPopupClosed = function (
     methodArguments: [
       {
         link: {
-          credentialToken: credentialToken,
-          credentialSecret: credentialSecret
+          credentialToken,
+          credentialSecret
         }
       }
     ],

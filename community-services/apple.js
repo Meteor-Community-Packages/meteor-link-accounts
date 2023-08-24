@@ -21,10 +21,10 @@ Meteor.linkWithApple = function (options, callback, nativeCallback) {
 
   quavePackage
     ? Package['quave:apple-oauth'].Apple.requestCredential(
-        options,
-        nativeCredentialRequestCompleteCallback,
-        credentialRequestCompleteCallback
-      )
+      options,
+      nativeCredentialRequestCompleteCallback,
+      credentialRequestCompleteCallback
+    )
     : bigowlPackage && Package['bigowl:apple-oauth'].Apple.requestCredential(
       options,
       credentialRequestCompleteCallback
