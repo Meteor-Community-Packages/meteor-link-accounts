@@ -16,6 +16,7 @@
   "scripts": {
     "test": "npm run lint && meteor test-packages ./",
     "lint": "./node_modules/.bin/standard --fix",
+    "lint-test-ci": "./node_modules/.bin/standardx",
     "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i",
     "all-contributors": "./node_modules/.bin/all-contributors",
     "all-contributors-generate": "./node_modules/.bin/all-contributors generate"
