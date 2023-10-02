@@ -33,10 +33,10 @@
     "url": "https://github.com/sponsors/StorytellerCZ"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/eslint-parser": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
-    "@types/meteor": "^2.9.3",
+    "@babel/core": "^7.22.20",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/preset-env": "^7.22.20",
+    "@types/meteor": "^2.9.4",
     "all-contributors-cli": "^6.26.1",
     "husky": "^8.0.3",
     "standard": "^17.1.0"
