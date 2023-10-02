@@ -28,6 +28,7 @@ import './community-services/wechat'
 import './community-services/line'
 import './community-services/office365'
 import './community-services/web3'
+import './community-services/betapass'
 
 Accounts.oauth.tryLinkAfterPopupClosed = function (
   credentialToken,
