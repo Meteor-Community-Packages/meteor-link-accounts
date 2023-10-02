@@ -4,6 +4,7 @@
 * More async calls have been added through the codebase
 * Minimum Meteor version is `2.9.11`
 * Deprecated `lichthagel:accounts-discord` which will be removed in v3
+* Betapass client preview added
 
 ## v. 2.7.1-alpha.1 - 23.8.2023
 * Added build target for Meteor 3 `alpha.11`
