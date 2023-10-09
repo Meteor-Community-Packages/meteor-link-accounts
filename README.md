@@ -81,7 +81,7 @@ Called after user is unlinking the service. The hook will receive object with th
 * mrt:accounts-vk
 * mikepol:accounts-ok
 * mikepol:accounts-mailru
-* jonperl:accounts-linkedin (depracated) / pauli:linkedin-oauth
+* pauli:linkedin-oauth
 * garbolino:accounts-soundcloud
 * alexbeauchemin:accounts-twitch
 * nicolaiwadstrom:meteor-angellist
@@ -95,7 +95,7 @@ Called after user is unlinking the service. The hook will receive object with th
 * lindoelio:accounts-office365 / ermlab:accounts-office365
 * quave:accounts-apple / bigowl:accounts-apple
 * freedombase:web3-login
-* lichthagel:accounts-discord / storyteller:accounts-discord
+* storyteller:accounts-discord
 
 ## License
 MIT
