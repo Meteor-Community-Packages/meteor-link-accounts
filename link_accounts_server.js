@@ -143,7 +143,7 @@ Accounts.LinkUserFromExternalService = async function (
 
     // Before link hook
     let shouldStop = false
-    Accounts._beforeLink.each((callback) => {
+    Accounts._beforeLink.forEach((callback) => {
       // eslint-disable-next-line n/no-callback-literal
       const result = callback({
         type: serviceName,
