@@ -105,7 +105,7 @@ Accounts.LinkUserFromExternalService = async function (
     throw new Meteor.Error("'id' missing from service data for: " + serviceName)
   }
 
-  const user = Meteor.user()
+  const user = await Meteor.userAsync()
 
   if (!user) {
     return new Meteor.Error('User not found for LinkUserFromExternalService')
@@ -168,12 +168,14 @@ Accounts.LinkUserFromExternalService = async function (
     }
 
     // On link hook
-    Accounts._onLink.each((callback) => {
+    Accounts._onLink.forEachAsync(async (callback) => {
+      const user = await Meteor.userAsync()
+
       // eslint-disable-next-line n/no-callback-literal
       callback({
         type: serviceName,
         serviceData,
-        user: Meteor.user(),
+        user,
         serviceOptions: options
       })
       return true
@@ -211,9 +213,10 @@ Accounts.unlinkService = async function (userId, serviceName, cb) {
       }
     )
     // On unlink hook
-    Accounts._onUnlink.each((callback) => {
+    Accounts._onUnlink.forEachAsync(async (callback) => {
+      const user = await Meteor.userAsync()
       // eslint-disable-next-line n/no-callback-literal
-      callback({ type: serviceName, user: Meteor.user() })
+      callback({ type: serviceName, user })
       return true
     })
   } else {
