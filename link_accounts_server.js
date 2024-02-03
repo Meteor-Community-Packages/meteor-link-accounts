@@ -143,7 +143,7 @@ Accounts.LinkUserFromExternalService = async function (
 
     // Before link hook
     let shouldStop = false
-    Accounts._beforeLink.each((callback) => {
+    Accounts._beforeLink.forEach((callback) => {
       // eslint-disable-next-line n/no-callback-literal
       const result = callback({
         type: serviceName,
@@ -168,7 +168,7 @@ Accounts.LinkUserFromExternalService = async function (
     }
 
     // On link hook
-    Accounts._onLink.each((callback) => {
+    Accounts._onLink.forEach((callback) => {
       // eslint-disable-next-line n/no-callback-literal
       callback({
         type: serviceName,
@@ -211,7 +211,7 @@ Accounts.unlinkService = async function (userId, serviceName, cb) {
       }
     )
     // On unlink hook
-    Accounts._onUnlink.each((callback) => {
+    Accounts._onUnlink.forEach((callback) => {
       // eslint-disable-next-line n/no-callback-literal
       callback({ type: serviceName, user: Meteor.user() })
       return true
