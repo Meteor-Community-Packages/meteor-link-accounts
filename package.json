@@ -1,6 +1,6 @@
 {
   "name": "meteor-link-accounts",
-  "version": "2.8.0",
+  "version": "3.0.0",
   "private": true,
   "description": "Link social accounts for Meteor",
   "main": "package.js",

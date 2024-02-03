@@ -1,5 +1,9 @@
 # Changelog
 
+## v.3.0.0
+* Removed deprecated providers
+* Minimum support version is Meteor 3.0
+
 ## v. 2.8.0
 * More async calls have been added through the codebase
 * Minimum Meteor version is `2.9.11`
