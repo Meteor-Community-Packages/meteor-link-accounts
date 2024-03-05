@@ -29,6 +29,7 @@ import './community-services/line'
 import './community-services/office365'
 import './community-services/web3'
 import './community-services/betapass'
+import './community-services/seznam'
 
 Accounts.oauth.tryLinkAfterPopupClosed = function (
   credentialToken,

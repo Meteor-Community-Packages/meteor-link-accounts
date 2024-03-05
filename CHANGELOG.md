@@ -1,5 +1,8 @@
 # Changelog
 
+## v. 2.9.0
+* Added `storyteller:accounts-seznam`
+
 ## v. 2.8.0
 * More async calls have been added through the codebase
 * Minimum Meteor version is `2.9.11`
