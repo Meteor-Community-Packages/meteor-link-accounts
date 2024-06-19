@@ -38,7 +38,7 @@ Accounts.registerLoginHandler(async function (options) {
     credentialSecret: Match.OneOf(null, String)
   })
 
-  const result = OAuth.retrieveCredential(
+  const result = await OAuth.retrieveCredential(
     options.link.credentialToken,
     options.link.credentialSecret
   )
