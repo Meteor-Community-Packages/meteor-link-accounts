@@ -71,7 +71,7 @@ Meteor.methods({
   },
   'bozhao:linkAccountsWeb3': async function (address) {
     check(address, String)
-    const user = Meteor.users.findOne({ 'services.web3.address': address })
+    const user = await Meteor.users.findOneAsync({ 'services.web3.address': address })
     if (user) throw new Meteor.Error('500', 'This address is already assigned!')
     return await Accounts.LinkUserFromExternalService(
       'web3',
@@ -193,7 +193,7 @@ Accounts.unlinkService = async function (userId, serviceName, cb) {
   if (typeof serviceName !== 'string') {
     throw new Meteor.Error('Service name must be string')
   }
-  const user = Meteor.users.findOne({ _id: userId })
+  const user = await Meteor.users.findOneAsync({ _id: userId })
   if (serviceName === 'resume' || serviceName === 'password') {
     throw new Meteor.Error(
       'Internal services cannot be unlinked: ' + serviceName
