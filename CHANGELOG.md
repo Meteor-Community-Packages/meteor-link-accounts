@@ -1,5 +1,10 @@
 # Changelog
 
+
+## v.3.0.0
+* Removed deprecated providers
+* Minimum support version is Meteor 3.0
+
 ## v. 2.9.0
 * Added `storyteller:accounts-seznam`
 
