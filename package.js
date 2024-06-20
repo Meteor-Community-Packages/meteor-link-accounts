@@ -6,7 +6,7 @@ Package.describe({
   description: 'Link social accounts for Meteor'
 })
 Package.onUse(function (api) {
-  api.versionsFrom(['2.9.1', '3.0-beta.6'])
+  api.versionsFrom(['2.9.1', '3.0-rc.4'])
 
   api.imply('accounts-base', ['client', 'server'])
   api.use(['ecmascript', 'check', 'accounts-oauth', 'oauth'])
