@@ -38,7 +38,7 @@ Accounts.registerLoginHandler(async function (options) {
     credentialSecret: Match.OneOf(null, String)
   })
 
-  const result = OAuth.retrieveCredential(
+  const result = await OAuth.retrieveCredential(
     options.link.credentialToken,
     options.link.credentialSecret
   )
@@ -71,7 +71,7 @@ Meteor.methods({
   },
   'bozhao:linkAccountsWeb3': async function (address) {
     check(address, String)
-    const user = Meteor.users.findOne({ 'services.web3.address': address })
+    const user = await Meteor.users.findOneAsync({ 'services.web3.address': address })
     if (user) throw new Meteor.Error('500', 'This address is already assigned!')
     return await Accounts.LinkUserFromExternalService(
       'web3',
@@ -105,7 +105,7 @@ Accounts.LinkUserFromExternalService = async function (
     throw new Meteor.Error("'id' missing from service data for: " + serviceName)
   }
 
-  const user = Meteor.user()
+  const user = await Meteor.userAsync()
 
   if (!user) {
     return new Meteor.Error('User not found for LinkUserFromExternalService')
@@ -168,12 +168,14 @@ Accounts.LinkUserFromExternalService = async function (
     }
 
     // On link hook
-    Accounts._onLink.forEach((callback) => {
+    Accounts._onLink.forEachAsync(async (callback) => {
+      const user = await Meteor.userAsync()
+
       // eslint-disable-next-line n/no-callback-literal
       callback({
         type: serviceName,
         serviceData,
-        user: Meteor.user(),
+        user,
         serviceOptions: options
       })
       return true
@@ -191,7 +193,7 @@ Accounts.unlinkService = async function (userId, serviceName, cb) {
   if (typeof serviceName !== 'string') {
     throw new Meteor.Error('Service name must be string')
   }
-  const user = Meteor.users.findOne({ _id: userId })
+  const user = await Meteor.users.findOneAsync({ _id: userId })
   if (serviceName === 'resume' || serviceName === 'password') {
     throw new Meteor.Error(
       'Internal services cannot be unlinked: ' + serviceName
@@ -211,9 +213,10 @@ Accounts.unlinkService = async function (userId, serviceName, cb) {
       }
     )
     // On unlink hook
-    Accounts._onUnlink.forEach((callback) => {
+    Accounts._onUnlink.forEachAsync(async (callback) => {
+      const user = await Meteor.userAsync()
       // eslint-disable-next-line n/no-callback-literal
-      callback({ type: serviceName, user: Meteor.user() })
+      callback({ type: serviceName, user })
       return true
     })
   } else {

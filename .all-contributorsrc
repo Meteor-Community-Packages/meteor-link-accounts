@@ -31,6 +31,15 @@
         "doc",
         "maintenance"
       ]
+    },
+    {
+      "login": "jankapunkt",
+      "name": "Jan Küster",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1135285?v=4",
+      "profile": "https://jankuester.com/",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7
