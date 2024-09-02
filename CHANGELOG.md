@@ -1,7 +1,9 @@
 # Changelog
 
+## v. 3.0.1
+* Fix a wrong if statement in the Seznam connector
 
-## v.3.0.0
+## v. 3.0.0
 * Removed deprecated providers
 * Minimum support version is Meteor 3.0
 

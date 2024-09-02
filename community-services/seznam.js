@@ -5,7 +5,7 @@ Meteor.linkWithSeznam = function (options, callback) {
   if (!Meteor.userId()) {
     throw new Meteor.Error(402, 'Please login to an existing account before link.')
   }
-  if (Package['storyteller:accounts-seznam']) {
+  if (!Package['storyteller:accounts-seznam']) {
     throw new Meteor.Error(403, 'Please include storyteller:accounts-seznam package')
   }
 
