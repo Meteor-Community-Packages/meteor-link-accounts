@@ -17,7 +17,7 @@
     "test": "npm run lint && meteor test-packages ./",
     "lint": "./node_modules/.bin/standard --fix",
     "lint-test-ci": "./node_modules/.bin/standard",
-    "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i",
+    "publish": "meteor npm i && npm prune --omit=dev && meteor publish && meteor npm i",
     "all-contributors": "./node_modules/.bin/all-contributors",
     "all-contributors-generate": "./node_modules/.bin/all-contributors generate"
   },
@@ -33,9 +33,9 @@
     "url": "https://github.com/sponsors/StorytellerCZ"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.7",
-    "@babel/eslint-parser": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
+    "@babel/core": "^7.25.2",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/preset-env": "^7.25.4",
     "@types/meteor": "^2.9.8",
     "all-contributors-cli": "^6.26.1",
     "standard": "^17.1.0"
