@@ -1,8 +1,7 @@
 # Changelog
 
-## Unreleased
+## v3.1.0
 * Added `storyteller:accounts-naver`
-* **Security:** `cordovaGoogle` method no longer trusts service data sent by the client. The Google `idToken` (or `accessToken`) is now verified with Google and must be issued to your Google client ID. If your Cordova app uses a different client ID than the one in your service configuration, add it to `Meteor.settings.packages['bozhao:link-accounts'].googleClientIds`.
 
 ## v. 3.0.1
 * Fix a wrong if statement in the Seznam connector

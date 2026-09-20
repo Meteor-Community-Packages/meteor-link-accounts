@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Meteor external service link system',
-  version: '3.0.1',
+  version: '3.1.0',
   git: 'https://github.com/Meteor-Community-Packages/meteor-link-accounts',
   name: 'bozhao:link-accounts',
   description: 'Link social accounts for Meteor'
