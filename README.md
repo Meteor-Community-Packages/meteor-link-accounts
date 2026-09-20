@@ -96,6 +96,7 @@ Called after user is unlinking the service. The hook will receive object with th
 * quave:accounts-apple / bigowl:accounts-apple
 * freedombase:web3-login
 * storyteller:accounts-discord
+* storyteller:accounts-naver
 
 ## License
 MIT
