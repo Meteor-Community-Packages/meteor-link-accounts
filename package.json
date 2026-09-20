@@ -14,7 +14,8 @@
   "homepage": "https://github.com/Meteor-Community-Packages/meteor-link-accounts#readme",
   "readme": "README.md",
   "scripts": {
-    "test": "npm run lint && meteor test-packages ./",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "node --experimental-vm-modules --test tests/*.test.cjs",
     "lint": "./node_modules/.bin/standard --fix",
     "lint-test-ci": "./node_modules/.bin/standard",
     "publish": "meteor npm i && npm prune --omit=dev && meteor publish && meteor npm i",
