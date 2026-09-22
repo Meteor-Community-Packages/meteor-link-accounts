@@ -26,6 +26,12 @@ You will call this on the page where you allow your users to connect to other se
 ##### `freedombase:web3-login`
 The `options` object accepts `linkMessage` key where you can set message for signature.
 
+##### Google on Cordova
+On Cordova the token from `cordova-plugin-googleplus` is verified with Google on the server and must be issued to the client ID in your Google service configuration (set it as `WEB_APPLICATION_CLIENT_ID` for the plugin). If your native app uses other client IDs, list them in settings:
+```json
+{ "packages": { "bozhao:link-accounts": { "googleClientIds": ["ios-or-android-client-id"] } } }
+```
+
 ### Server side
 #### Accounts.unlinkService(userId, serviceName)
 Given the `userId` and the name of the service (`serviceName`) as it is named in the user document (most often lower case name of the service).
