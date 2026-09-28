@@ -27,9 +27,10 @@ export const verifyGoogleTokens = async ({ idToken, accessToken }) => {
   const response = await fetch(
     `https://oauth2.googleapis.com/tokeninfo?${new URLSearchParams({ [param]: token })}`
   )
+  if (!response.ok) throw new Meteor.Error(403, 'Google token verification failed')
   const info = await response.json()
   // aud check stops tokens issued to other apps from being replayed here
-  if (!response.ok || !info.sub || !clientIds.includes(info.aud)) {
+  if (!info.sub || !clientIds.includes(info.aud)) {
     throw new Meteor.Error(403, 'Google token verification failed')
   }
 
