@@ -19,7 +19,7 @@ Meteor.linkWithGoogle = function (options, callback) {
     window.plugins.googleplus.login(
       {},
       function (serviceData) {
-        Meteor.call('cordovaGoogle', 'google', serviceData)
+        Meteor.call('cordovaGoogle', 'google', serviceData, callback)
       },
       function (err) {
         callback(err)

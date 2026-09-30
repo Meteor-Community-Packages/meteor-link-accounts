@@ -4,6 +4,7 @@ import { Mongo } from 'meteor/mongo'
 import { check, Match } from 'meteor/check'
 import { OAuth } from 'meteor/oauth'
 import { Hook } from 'meteor/callback-hook'
+import { verifyGoogleTokens } from './core-services/google_server'
 
 /**
  * Hooks definition and registration
@@ -65,9 +66,14 @@ Accounts.registerLoginHandler(async function (options) {
 Meteor.methods({
   // TODO namespace this method for next major release
   cordovaGoogle: async function (serviceName, serviceData) {
-    check(serviceName, String)
-    check(serviceData, Object)
-    await Accounts.LinkUserFromExternalService(serviceName, serviceData, {}) // passing empty object cause in any case it is not used
+    check(serviceName, 'google')
+    check(serviceData, Match.ObjectIncluding({
+      idToken: Match.Maybe(String),
+      accessToken: Match.Maybe(String)
+    }))
+    // Never trust service data from the client, only what Google confirms for the tokens
+    const verified = await verifyGoogleTokens(serviceData)
+    await Accounts.LinkUserFromExternalService('google', verified, {}) // passing empty object cause in any case it is not used
   },
   'bozhao:linkAccountsWeb3': async function (address) {
     check(address, String)

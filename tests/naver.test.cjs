@@ -29,6 +29,8 @@ test('Meteor.linkWithNaver', async (t) => {
     'meteor/oauth': { OAuth }
   }
 
+  // One SyntheticModule per specifier, creating a new one for every import crashes Node 20 with SIGSEGV
+  const synthetic = {}
   async function load (filename) {
     const module = new SourceTextModule(await readFile(filename, 'utf8'), {
       context,
@@ -37,9 +39,10 @@ test('Meteor.linkWithNaver', async (t) => {
     await module.link((specifier, parent) => {
       const exports = meteorModules[specifier]
       if (!exports) return load(resolve(dirname(parent.identifier), `${specifier}.js`))
-      return new SyntheticModule(Object.keys(exports), function () {
+      synthetic[specifier] ??= new SyntheticModule(Object.keys(exports), function () {
         for (const [name, value] of Object.entries(exports)) this.setExport(name, value)
       }, { context })
+      return synthetic[specifier]
     })
     return module
   }
